@@ -1,0 +1,619 @@
+[
+  {
+    "rule_id": "KB-BPMN-001",
+    "version": "1.0.0",
+    "title": "Engineering IDs present",
+    "description": "Every object requires a non-empty engineering ID.",
+    "rationale": "Every object requires a non-empty engineering ID.",
+    "category": "governance",
+    "severity": "critical",
+    "scope": "repository",
+    "enabled_by_default": true,
+    "tags": [
+      "identity"
+    ],
+    "acceptance_criteria": [
+      "Every object requires a non-empty engineering ID."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-002",
+    "version": "1.0.0",
+    "title": "Engineering IDs unique",
+    "description": "Engineering IDs must be globally unique.",
+    "rationale": "Engineering IDs must be globally unique.",
+    "category": "structural",
+    "severity": "critical",
+    "scope": "repository",
+    "enabled_by_default": true,
+    "tags": [
+      "identity"
+    ],
+    "acceptance_criteria": [
+      "Engineering IDs must be globally unique."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-003",
+    "version": "1.0.0",
+    "title": "Provenance available",
+    "description": "Every object should retain source provenance.",
+    "rationale": "Every object should retain source provenance.",
+    "category": "governance",
+    "severity": "warning",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "provenance"
+    ],
+    "acceptance_criteria": [
+      "Every object should retain source provenance."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-004",
+    "version": "1.0.0",
+    "title": "Version metadata present",
+    "description": "Every object requires engineering version metadata.",
+    "rationale": "Every object requires engineering version metadata.",
+    "category": "governance",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "metadata"
+    ],
+    "acceptance_criteria": [
+      "Every object requires engineering version metadata."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-005",
+    "version": "1.0.0",
+    "title": "Recognized BPMN types",
+    "description": "Unknown BPMN object types are not releaseable.",
+    "rationale": "Unknown BPMN object types are not releaseable.",
+    "category": "quality",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "typing"
+    ],
+    "acceptance_criteria": [
+      "Unknown BPMN object types are not releaseable."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-006",
+    "version": "1.0.0",
+    "title": "Flow endpoints resolve",
+    "description": "Every flow source and target must resolve.",
+    "rationale": "Every flow source and target must resolve.",
+    "category": "semantic",
+    "severity": "critical",
+    "scope": "flow",
+    "enabled_by_default": true,
+    "tags": [
+      "flow"
+    ],
+    "acceptance_criteria": [
+      "Every flow source and target must resolve."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-007",
+    "version": "1.0.0",
+    "title": "No self-loop sequence flows",
+    "description": "Sequence flows should not connect an element to itself.",
+    "rationale": "Sequence flows should not connect an element to itself.",
+    "category": "quality",
+    "severity": "error",
+    "scope": "flow",
+    "enabled_by_default": true,
+    "tags": [
+      "flow"
+    ],
+    "acceptance_criteria": [
+      "Sequence flows should not connect an element to itself."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-008",
+    "version": "1.0.0",
+    "title": "Flow IDs present",
+    "description": "Every flow requires an engineering ID.",
+    "rationale": "Every flow requires an engineering ID.",
+    "category": "governance",
+    "severity": "critical",
+    "scope": "flow",
+    "enabled_by_default": true,
+    "tags": [
+      "flow",
+      "identity"
+    ],
+    "acceptance_criteria": [
+      "Every flow requires an engineering ID."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-009",
+    "version": "1.0.0",
+    "title": "Sequence flows connect flow nodes",
+    "description": "Sequence flows must connect BPMN flow nodes.",
+    "rationale": "Sequence flows must connect BPMN flow nodes.",
+    "category": "semantic",
+    "severity": "error",
+    "scope": "flow",
+    "enabled_by_default": true,
+    "tags": [
+      "flow"
+    ],
+    "acceptance_criteria": [
+      "Sequence flows must connect BPMN flow nodes."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-010",
+    "version": "1.0.0",
+    "title": "No duplicate directed sequence edges",
+    "description": "Duplicate sequence edges between identical endpoints are prohibited.",
+    "rationale": "Duplicate sequence edges between identical endpoints are prohibited.",
+    "category": "quality",
+    "severity": "warning",
+    "scope": "graph",
+    "enabled_by_default": true,
+    "tags": [
+      "flow"
+    ],
+    "acceptance_criteria": [
+      "Duplicate sequence edges between identical endpoints are prohibited."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-011",
+    "version": "1.0.0",
+    "title": "Start events have no incoming sequence flow",
+    "description": "Start events must not have incoming sequence flows.",
+    "rationale": "Start events must not have incoming sequence flows.",
+    "category": "semantic",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "event"
+    ],
+    "acceptance_criteria": [
+      "Start events must not have incoming sequence flows."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-012",
+    "version": "1.0.0",
+    "title": "Start events have outgoing sequence flow",
+    "description": "Start events require at least one outgoing flow.",
+    "rationale": "Start events require at least one outgoing flow.",
+    "category": "semantic",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "event"
+    ],
+    "acceptance_criteria": [
+      "Start events require at least one outgoing flow."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-013",
+    "version": "1.0.0",
+    "title": "End events have no outgoing sequence flow",
+    "description": "End events must not have outgoing sequence flows.",
+    "rationale": "End events must not have outgoing sequence flows.",
+    "category": "semantic",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "event"
+    ],
+    "acceptance_criteria": [
+      "End events must not have outgoing sequence flows."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-014",
+    "version": "1.0.0",
+    "title": "End events have incoming sequence flow",
+    "description": "End events require at least one incoming flow.",
+    "rationale": "End events require at least one incoming flow.",
+    "category": "semantic",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "event"
+    ],
+    "acceptance_criteria": [
+      "End events require at least one incoming flow."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-015",
+    "version": "1.0.0",
+    "title": "Intermediate events are connected",
+    "description": "Intermediate events require incoming and outgoing connectivity.",
+    "rationale": "Intermediate events require incoming and outgoing connectivity.",
+    "category": "quality",
+    "severity": "warning",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "event"
+    ],
+    "acceptance_criteria": [
+      "Intermediate events require incoming and outgoing connectivity."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-016",
+    "version": "1.0.0",
+    "title": "Gateways are connected",
+    "description": "Gateways require incoming and outgoing sequence flows.",
+    "rationale": "Gateways require incoming and outgoing sequence flows.",
+    "category": "semantic",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "gateway"
+    ],
+    "acceptance_criteria": [
+      "Gateways require incoming and outgoing sequence flows."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-017",
+    "version": "1.0.0",
+    "title": "Diverging exclusive gateways split",
+    "description": "Diverging exclusive gateways should have at least two outgoing flows.",
+    "rationale": "Diverging exclusive gateways should have at least two outgoing flows.",
+    "category": "quality",
+    "severity": "warning",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "gateway"
+    ],
+    "acceptance_criteria": [
+      "Diverging exclusive gateways should have at least two outgoing flows."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-018",
+    "version": "1.0.0",
+    "title": "Converging exclusive gateways merge",
+    "description": "Converging exclusive gateways should have at least two incoming flows.",
+    "rationale": "Converging exclusive gateways should have at least two incoming flows.",
+    "category": "quality",
+    "severity": "warning",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "gateway"
+    ],
+    "acceptance_criteria": [
+      "Converging exclusive gateways should have at least two incoming flows."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-019",
+    "version": "1.0.0",
+    "title": "Parallel gateways are not one-in-one-out",
+    "description": "Parallel gateways must model an actual split or join.",
+    "rationale": "Parallel gateways must model an actual split or join.",
+    "category": "quality",
+    "severity": "warning",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "gateway"
+    ],
+    "acceptance_criteria": [
+      "Parallel gateways must model an actual split or join."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-020",
+    "version": "1.0.0",
+    "title": "Gateway degree bounded",
+    "description": "Gateways should not exceed twelve incoming or outgoing flows.",
+    "rationale": "Gateways should not exceed twelve incoming or outgoing flows.",
+    "category": "quality",
+    "severity": "warning",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "gateway"
+    ],
+    "acceptance_criteria": [
+      "Gateways should not exceed twelve incoming or outgoing flows."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-021",
+    "version": "1.0.0",
+    "title": "Tasks are named",
+    "description": "Tasks require a human-readable name.",
+    "rationale": "Tasks require a human-readable name.",
+    "category": "governance",
+    "severity": "warning",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "task",
+      "naming"
+    ],
+    "acceptance_criteria": [
+      "Tasks require a human-readable name."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-022",
+    "version": "1.0.0",
+    "title": "Task names are concise",
+    "description": "Task names should not exceed 120 characters.",
+    "rationale": "Task names should not exceed 120 characters.",
+    "category": "quality",
+    "severity": "info",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "task",
+      "naming"
+    ],
+    "acceptance_criteria": [
+      "Task names should not exceed 120 characters."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-023",
+    "version": "1.0.0",
+    "title": "Tasks are connected",
+    "description": "Tasks require incoming or outgoing process connectivity.",
+    "rationale": "Tasks require incoming or outgoing process connectivity.",
+    "category": "semantic",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "task"
+    ],
+    "acceptance_criteria": [
+      "Tasks require incoming or outgoing process connectivity."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-024",
+    "version": "1.0.0",
+    "title": "No direct start-to-end trivial process",
+    "description": "A process should not consist only of a direct start-to-end flow.",
+    "rationale": "A process should not consist only of a direct start-to-end flow.",
+    "category": "quality",
+    "severity": "warning",
+    "scope": "graph",
+    "enabled_by_default": true,
+    "tags": [
+      "graph"
+    ],
+    "acceptance_criteria": [
+      "A process should not consist only of a direct start-to-end flow."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-025",
+    "version": "1.0.0",
+    "title": "Graph has roots",
+    "description": "The sequence-flow graph requires at least one root.",
+    "rationale": "The sequence-flow graph requires at least one root.",
+    "category": "structural",
+    "severity": "critical",
+    "scope": "graph",
+    "enabled_by_default": true,
+    "tags": [
+      "graph"
+    ],
+    "acceptance_criteria": [
+      "The sequence-flow graph requires at least one root."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-026",
+    "version": "1.0.0",
+    "title": "Graph has sinks",
+    "description": "The sequence-flow graph requires at least one sink.",
+    "rationale": "The sequence-flow graph requires at least one sink.",
+    "category": "structural",
+    "severity": "critical",
+    "scope": "graph",
+    "enabled_by_default": true,
+    "tags": [
+      "graph"
+    ],
+    "acceptance_criteria": [
+      "The sequence-flow graph requires at least one sink."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-027",
+    "version": "1.0.0",
+    "title": "No unreachable flow nodes",
+    "description": "All flow nodes should be reachable from a graph root.",
+    "rationale": "All flow nodes should be reachable from a graph root.",
+    "category": "quality",
+    "severity": "warning",
+    "scope": "graph",
+    "enabled_by_default": true,
+    "tags": [
+      "graph"
+    ],
+    "acceptance_criteria": [
+      "All flow nodes should be reachable from a graph root."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-028",
+    "version": "1.0.0",
+    "title": "Cycles require review",
+    "description": "Sequence-flow cycles require explicit engineering review.",
+    "rationale": "Sequence-flow cycles require explicit engineering review.",
+    "category": "governance",
+    "severity": "info",
+    "scope": "graph",
+    "enabled_by_default": true,
+    "tags": [
+      "graph",
+      "review"
+    ],
+    "acceptance_criteria": [
+      "Sequence-flow cycles require explicit engineering review."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-029",
+    "version": "1.0.0",
+    "title": "Flow nodes have geometry",
+    "description": "Every flow node should have geometric bounds.",
+    "rationale": "Every flow node should have geometric bounds.",
+    "category": "layout",
+    "severity": "warning",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "geometry"
+    ],
+    "acceptance_criteria": [
+      "Every flow node should have geometric bounds."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-030",
+    "version": "1.0.0",
+    "title": "Bounds are positive",
+    "description": "Node bounds must have positive width and height.",
+    "rationale": "Node bounds must have positive width and height.",
+    "category": "layout",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "geometry"
+    ],
+    "acceptance_criteria": [
+      "Node bounds must have positive width and height."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-031",
+    "version": "1.0.0",
+    "title": "Flows have geometry",
+    "description": "Flows should retain path or waypoint geometry.",
+    "rationale": "Flows should retain path or waypoint geometry.",
+    "category": "layout",
+    "severity": "warning",
+    "scope": "flow",
+    "enabled_by_default": true,
+    "tags": [
+      "geometry"
+    ],
+    "acceptance_criteria": [
+      "Flows should retain path or waypoint geometry."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-032",
+    "version": "1.0.0",
+    "title": "Objects are visible",
+    "description": "Releaseable BPMN objects must be visible.",
+    "rationale": "Releaseable BPMN objects must be visible.",
+    "category": "release",
+    "severity": "error",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "presentation"
+    ],
+    "acceptance_criteria": [
+      "Releaseable BPMN objects must be visible."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-033",
+    "version": "1.0.0",
+    "title": "Source SHA available",
+    "description": "Objects should retain source SHA-256 provenance.",
+    "rationale": "Objects should retain source SHA-256 provenance.",
+    "category": "release",
+    "severity": "warning",
+    "scope": "object",
+    "enabled_by_default": true,
+    "tags": [
+      "provenance",
+      "release"
+    ],
+    "acceptance_criteria": [
+      "Objects should retain source SHA-256 provenance."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-034",
+    "version": "1.0.0",
+    "title": "No empty repository",
+    "description": "A release repository must contain BPMN objects.",
+    "rationale": "A release repository must contain BPMN objects.",
+    "category": "release",
+    "severity": "critical",
+    "scope": "repository",
+    "enabled_by_default": true,
+    "tags": [
+      "release"
+    ],
+    "acceptance_criteria": [
+      "A release repository must contain BPMN objects."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-035",
+    "version": "1.0.0",
+    "title": "At least one start event",
+    "description": "The model should contain at least one start event.",
+    "rationale": "The model should contain at least one start event.",
+    "category": "semantic",
+    "severity": "error",
+    "scope": "repository",
+    "enabled_by_default": true,
+    "tags": [
+      "event"
+    ],
+    "acceptance_criteria": [
+      "The model should contain at least one start event."
+    ]
+  },
+  {
+    "rule_id": "KB-BPMN-036",
+    "version": "1.0.0",
+    "title": "At least one end event",
+    "description": "The model should contain at least one end event.",
+    "rationale": "The model should contain at least one end event.",
+    "category": "semantic",
+    "severity": "error",
+    "scope": "repository",
+    "enabled_by_default": true,
+    "tags": [
+      "event"
+    ],
+    "acceptance_criteria": [
+      "The model should contain at least one end event."
+    ]
+  }
+]

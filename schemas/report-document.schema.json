@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AP9.3.5.1 Reporting Document",
+  "type": "object",
+  "required": [
+    "report_metadata",
+    "summary",
+    "evaluation"
+  ],
+  "properties": {
+    "report_metadata": {
+      "type": "object"
+    },
+    "summary": {
+      "type": "object"
+    },
+    "evaluation": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

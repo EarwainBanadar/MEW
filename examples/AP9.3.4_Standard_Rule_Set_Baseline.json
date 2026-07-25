@@ -1,0 +1,1014 @@
+{
+  "evaluation_id": "EVAL-20260724T155042997495Z",
+  "started_at_utc": "2026-07-24T15:50:42.997495+00:00",
+  "completed_at_utc": "2026-07-24T15:50:43.001047+00:00",
+  "selected_rule_count": 36,
+  "skipped_rule_count": 0,
+  "finding_count": 69,
+  "error_count": 0,
+  "overall_status": "WARNING",
+  "results": [
+    {
+      "rule_id": "KB-BPMN-001",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.051,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.997607+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-002",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.303,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.997943+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-003",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.036,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.997989+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-004",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.028,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998022+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-005",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.03,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998056+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-006",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.086,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998146+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-007",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.046,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998196+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-008",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.026,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998226+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-009",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.085,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998314+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-010",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.084,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998402+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-011",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.043,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998450+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-012",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.039,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998492+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-013",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.039,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998535+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-014",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.038,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998578+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-015",
+      "rule_version": "1.0.0",
+      "status": "finding",
+      "finding_count": 66,
+      "duration_ms": 0.161,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998742+00:00",
+      "findings": [
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_006_P100_P300",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_006_P100_P300",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_007_P100_P300",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_007_P100_P300",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_008_P300_P100",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_008_P300_P100",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_011_P200_P100",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_011_P200_P100",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_012_P100_P400",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_012_P100_P400",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_013_P400_P500",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_013_P400_P500",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_014_P500_P600",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_014_P500_P600",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_020",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_020",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_021",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_021",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_022",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_022",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_023",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_023",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_024",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_024",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_025",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_025",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_026",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_026",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_027",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_027",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_028",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_028",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_029",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_029",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_001",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_001",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_002",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_002",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_003",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_003",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_004",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_004",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_005",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_005",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_009",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_009",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_010",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_010",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_015",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_015",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_016",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_016",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_017",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_017",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_018",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_018",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_019",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_019",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_030",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_030",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_031",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_031",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_032",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_032",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_END_IF_033",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        },
+        {
+          "rule_id": "KB-BPMN-015",
+          "severity": "warning",
+          "message": "Intermediate event is not fully connected",
+          "object_id": "EV_START_IF_033",
+          "location": null,
+          "recommendation": null,
+          "evidence": {}
+        }
+      ]
+    },
+    {
+      "rule_id": "KB-BPMN-016",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.035,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998782+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-017",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.037,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998822+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-018",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.035,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998861+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-019",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.034,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998898+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-020",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.036,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998938+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-021",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.041,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.998982+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-022",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.039,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.999025+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-023",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.033,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.999062+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-024",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.105,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.999171+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-025",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.398,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.999574+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-026",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.361,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:42.999942+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-027",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.361,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.000310+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-028",
+      "rule_version": "1.0.0",
+      "status": "finding",
+      "finding_count": 3,
+      "duration_ms": 0.415,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.000733+00:00",
+      "findings": [
+        {
+          "rule_id": "KB-BPMN-028",
+          "severity": "info",
+          "message": "Sequence-flow cycle detected",
+          "object_id": "T003",
+          "location": null,
+          "recommendation": null,
+          "evidence": {
+            "cycle": [
+              "T003",
+              "G001",
+              "T003"
+            ]
+          }
+        },
+        {
+          "rule_id": "KB-BPMN-028",
+          "severity": "info",
+          "message": "Sequence-flow cycle detected",
+          "object_id": "T030",
+          "location": null,
+          "recommendation": null,
+          "evidence": {
+            "cycle": [
+              "T030",
+              "G002",
+              "T030"
+            ]
+          }
+        },
+        {
+          "rule_id": "KB-BPMN-028",
+          "severity": "info",
+          "message": "Sequence-flow cycle detected",
+          "object_id": "G003",
+          "location": null,
+          "recommendation": null,
+          "evidence": {
+            "cycle": [
+              "G003",
+              "T034",
+              "T035",
+              "G003"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "rule_id": "KB-BPMN-029",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.042,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.000784+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-030",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.068,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.000857+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-031",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.033,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.000893+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-032",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.027,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.000924+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-033",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.027,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.000954+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-034",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.004,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.000961+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-035",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.026,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.000990+00:00",
+      "findings": []
+    },
+    {
+      "rule_id": "KB-BPMN-036",
+      "rule_version": "1.0.0",
+      "status": "pass",
+      "finding_count": 0,
+      "duration_ms": 0.026,
+      "error_message": null,
+      "executed_at_utc": "2026-07-24T15:50:43.001019+00:00",
+      "findings": []
+    }
+  ]
+}
