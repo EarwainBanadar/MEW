@@ -21,7 +21,7 @@ def _local_attrs(el: etree._Element) -> Dict[str,str]:
     out={}
     for k,v in el.attrib.items():
         try: key=etree.QName(k).localname
-        except Exception: key=k
+        except ValueError: key=k
         out[key]=v
     return out
 
@@ -124,7 +124,6 @@ class SemanticSvgParser:
                 diagnostics.append(Diagnostic('SEM-ID-002','ERROR',f'Duplicate engineering id: {eid}',eid,occ[0][1]))
 
         element_index={e.engineering_id:e for e in elements}
-        flow_index={f.engineering_id:f for f in flows}
         for fl in flows:
             if fl.source_ref not in element_index:
                 diagnostics.append(Diagnostic('SEM-REF-001','ERROR',f'Unresolved source reference {fl.source_ref}',fl.engineering_id,fl.source_xpath))
