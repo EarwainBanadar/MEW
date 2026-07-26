@@ -1,10 +1,10 @@
 from __future__ import annotations
-import hashlib, json, re
+import hashlib
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Dict, List, Optional
 from lxml import etree
-from .geometry import geometry_for, merge_bbox
+from .geometry import geometry_for
 from .model import Diagnostic, Geometry, GraphicPrimitive, SemanticDocument, SemanticElement, SemanticFlow
 
 SCHEMA_VERSION="0.1.0"

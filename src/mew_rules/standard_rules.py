@@ -1,6 +1,6 @@
 from __future__ import annotations
 from collections import Counter,defaultdict
-from mew_bpmn.model import Event,EventKind,Gateway,GatewayKind,Task,Flow,FlowKind,ObjectKind
+from mew_bpmn.model import Event,EventKind,Gateway,GatewayKind,Task,FlowKind,ObjectKind
 from .base import FunctionalRule
 from .model import RuleCategory,RuleDefinition,RuleFinding,RuleScope,RuleSeverity
 from .registry import RuleRegistry

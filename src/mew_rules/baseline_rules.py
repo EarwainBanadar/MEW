@@ -1,6 +1,6 @@
 from __future__ import annotations
 from .base import FunctionalRule
-from .model import RuleCategory, RuleContext, RuleDefinition, RuleFinding, RuleScope, RuleSeverity
+from .model import RuleCategory, RuleDefinition, RuleFinding, RuleScope, RuleSeverity
 from .registry import RuleRegistry
 
 def _def(i,title,desc,rat,cat,sev,scope):
