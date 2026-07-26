@@ -40,3 +40,10 @@ addopts = "-ra"
 target-version = "py310"
 line-length = 100
 exclude = ["releases", "examples"]
+
+[tool.ruff.lint]
+# Initial import quality gate: enforce rules that identify invalid syntax,
+# undefined names and other defects that can change runtime behaviour.
+# Import sorting and Python-modernisation rules are intentionally handled in
+# a dedicated follow-up change to keep the v0.9.3 import reviewable.
+select = ["E9", "F63", "F7", "F82"]
