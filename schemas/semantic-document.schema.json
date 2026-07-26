@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MEW AP9.1 Semantic Document",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "source",
+    "document_metadata",
+    "elements",
+    "flows",
+    "diagnostics",
+    "index",
+    "statistics"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object"
+    },
+    "document_metadata": {
+      "type": "object"
+    },
+    "elements": {
+      "type": "array"
+    },
+    "flows": {
+      "type": "array"
+    },
+    "diagnostics": {
+      "type": "array"
+    },
+    "index": {
+      "type": "object"
+    },
+    "statistics": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

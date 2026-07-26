@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MEW Release Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "descriptor",
+    "artifact_count",
+    "total_bytes",
+    "artifacts",
+    "manifest_payload_sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "descriptor": {
+      "type": "object"
+    },
+    "artifact_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "total_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "logical_path",
+          "source_path",
+          "size",
+          "sha256",
+          "media_type",
+          "required"
+        ]
+      }
+    },
+    "manifest_payload_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

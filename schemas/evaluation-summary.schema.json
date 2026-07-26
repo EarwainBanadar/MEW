@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AP9.3.3 Evaluation Summary",
+  "type": "object",
+  "required": [
+    "evaluation_id",
+    "overall_status",
+    "results"
+  ],
+  "properties": {
+    "evaluation_id": {
+      "type": "string"
+    },
+    "overall_status": {
+      "enum": [
+        "PASS",
+        "WARNING",
+        "FAIL",
+        "ERROR"
+      ]
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

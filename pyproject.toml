@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mew"
+version = "0.9.3"
+description = "Model Engineering Workbench for deterministic BPMN engineering"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Proprietary"}
+authors = [{name = "MES/MOM Solution Template Management"}]
+keywords = ["BPMN", "MES", "MOM", "model engineering", "validation"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "pytest-cov>=5",
+  "build>=1.2",
+  "ruff>=0.6"
+]
+
+[project.scripts]
+mew-semantic = "mew_semantic.cli:main"
+mew-bpmn = "mew_bpmn.cli:main"
+mew-rules = "mew_rules.standard_cli:main"
+mew-report = "mew_reporting.cli:main"
+mew-release = "mew_release.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+exclude = ["releases", "examples"]
+
+[tool.ruff.lint]
+# Initial import quality gate: enforce rules that identify invalid syntax,
+# undefined names and other defects that can change runtime behaviour.
+# Import sorting and Python-modernisation rules are intentionally handled in
+# a dedicated follow-up change to keep the v0.9.3 import reviewable.
+select = ["E9", "F63", "F7", "F82"]
