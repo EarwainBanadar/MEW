@@ -39,12 +39,13 @@ def geometry_for(el: etree._Element, child_boxes: Iterable[Optional[Dict[str,flo
     tag=etree.QName(el).localname
     x=f(el.get('x')); y=f(el.get('y')); w=f(el.get('width')); h=f(el.get('height'))
     cx=f(el.get('cx')); cy=f(el.get('cy')); r=f(el.get('r'))
+    rx=r if tag=='circle' else f(el.get('rx'))
+    ry=r if tag=='circle' else f(el.get('ry'))
     pts=[]; box=None
     if tag in ('rect','image','foreignObject','svg') and None not in (x,y,w,h):
         box={"x":x,"y":y,"width":w,"height":h}
-    elif tag in ('circle','ellipse'):
-        rx=r if tag=='circle' else f(el.get('rx')); ry=r if tag=='circle' else f(el.get('ry'))
-        if None not in (cx,cy,rx,ry): box={"x":cx-rx,"y":cy-ry,"width":2*rx,"height":2*ry}
+    elif tag in ('circle','ellipse') and None not in (cx,cy,rx,ry):
+        box={"x":cx-rx,"y":cy-ry,"width":2*rx,"height":2*ry}
     elif tag=='line':
         x1=f(el.get('x1'));y1=f(el.get('y1'));x2=f(el.get('x2'));y2=f(el.get('y2'))
         if None not in (x1,y1,x2,y2): pts=[Point(x1,y1),Point(x2,y2)]; box=bbox_from_points(pts)
