@@ -47,24 +47,24 @@ class SemanticModelBuilder:
         return repo
 
     def _common(self, raw: Dict[str, Any], source_sha: Optional[str]) -> Dict[str, Any]:
-        return dict(
-            engineering_id=raw["engineering_id"],
-            bpmn_type=raw.get("bpmn_type") or raw.get("flow_type") or "unknown",
-            name=raw.get("name"),
-            documentation=raw.get("text"),
-            geometry=geometry_from(raw.get("geometry", {})),
-            presentation=Presentation(
+        return {
+            "engineering_id": raw["engineering_id"],
+            "bpmn_type": raw.get("bpmn_type") or raw.get("flow_type") or "unknown",
+            "name": raw.get("name"),
+            "documentation": raw.get("text"),
+            "geometry": geometry_from(raw.get("geometry", {})),
+            "presentation": Presentation(
                 style=dict(raw.get("style", {})),
                 primitives=list(raw.get("primitives", []))
             ),
-            provenance=Provenance(
+            "provenance": Provenance(
                 svg_id=raw.get("svg_id"),
                 source_xpath=raw.get("source_xpath"),
                 parent_svg_id=raw.get("parent_svg_id"),
                 source_sha256=source_sha
             ),
-            metadata=EngineeringMetadata(custom=dict(raw.get("metadata", {})))
-        )
+            "metadata": EngineeringMetadata(custom=dict(raw.get("metadata", {})))
+        }
 
     def _element(self, raw: Dict[str, Any], source_sha: Optional[str]) -> EngineeringObject:
         bpmn_type = raw.get("bpmn_type", "unknown")
