@@ -1,13 +1,15 @@
-
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from time import perf_counter
-from typing import Callable, Iterable, List
+from typing import Callable, Iterable
 
 from .model import (
-    RuleContext, RuleDefinition, RuleExecutionResult,
-    RuleFinding, RuleStatus
+    RuleContext,
+    RuleDefinition,
+    RuleExecutionResult,
+    RuleFinding,
+    RuleStatus,
 )
 
 
@@ -33,7 +35,7 @@ class Rule(ABC):
                 findings=findings,
                 duration_ms=(perf_counter() - started) * 1000.0,
             )
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001
             return RuleExecutionResult(
                 rule_id=self.definition.rule_id,
                 rule_version=self.definition.version,
