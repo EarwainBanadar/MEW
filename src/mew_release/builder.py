@@ -1,7 +1,7 @@
 from __future__ import annotations
 from pathlib import Path
-from typing import Dict, Iterable, List, Mapping, Optional
-import hashlib, json, mimetypes, os, shutil, tempfile, zipfile
+from typing import Dict, Iterable, List, Optional
+import hashlib, json, mimetypes, shutil, zipfile
 
 from .models import ArtifactRecord, ReleaseBuildResult, ReleaseDescriptor, ReleaseError
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, asdict, field
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict
 
 class ReleaseError(RuntimeError):
     pass

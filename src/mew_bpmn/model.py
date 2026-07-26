@@ -2,7 +2,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field, asdict
 from enum import Enum
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional
 
 class ObjectKind(str, Enum):
     PROCESS = "process"

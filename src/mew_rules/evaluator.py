@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Dict, Iterable, List, Optional, Sequence, Set
+from typing import List, Optional, Set
 from .model import RuleContext, RuleExecutionResult, RuleSeverity, RuleStatus
 from .registry import RuleRegistry
 
