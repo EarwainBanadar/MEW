@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="160" viewBox="0 0 520 160">
+  <title>Deterministic reference process</title>
+  <g id="start-svg" data-bpmn-type="startEvent" data-element-id="start">
+    <circle cx="60" cy="80" r="22" fill="white" stroke="black"/>
+    <text x="60" y="125" text-anchor="middle">Start</text>
+  </g>
+  <g id="task-svg" data-bpmn-type="task" data-element-id="review">
+    <rect x="170" y="50" width="140" height="60" rx="8" fill="white" stroke="black"/>
+    <text x="240" y="85" text-anchor="middle">Review model</text>
+  </g>
+  <g id="end-svg" data-bpmn-type="endEvent" data-element-id="end">
+    <circle cx="430" cy="80" r="22" fill="white" stroke="black" stroke-width="3"/>
+    <text x="430" y="125" text-anchor="middle">End</text>
+  </g>
+  <path id="flow-1-svg" data-flow-type="sequenceFlow" data-element-id="flow-1"
+        data-source-ref="start" data-target-ref="review" d="M82 80 L170 80" fill="none" stroke="black"/>
+  <path id="flow-2-svg" data-flow-type="sequenceFlow" data-element-id="flow-2"
+        data-source-ref="review" data-target-ref="end" d="M310 80 L408 80" fill="none" stroke="black"/>
+</svg>

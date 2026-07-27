@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 license = {text = "Proprietary"}
 authors = [{name = "MES/MOM Solution Template Management"}]
 keywords = ["BPMN", "MES", "MOM", "model engineering", "validation"]
-dependencies = []
+dependencies = ["lxml>=5"]
 
 [project.optional-dependencies]
 dev = [
