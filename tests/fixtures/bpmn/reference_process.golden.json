@@ -1,0 +1,30 @@
+{
+  "evaluation": {
+    "error_count": 0,
+    "finding_count": 0,
+    "overall_status": "PASS",
+    "results": [
+      {"finding_count": 0, "rule_id": "KB-EVAL-001", "status": "pass"},
+      {"finding_count": 0, "rule_id": "KB-EVAL-002", "status": "pass"},
+      {"finding_count": 0, "rule_id": "KB-EVAL-003", "status": "pass"},
+      {"finding_count": 0, "rule_id": "KB-EVAL-004", "status": "pass"}
+    ],
+    "selected_rule_count": 4
+  },
+  "semantic": {
+    "diagnostics": [],
+    "elements": [
+      {"engineering_id": "start", "bpmn_type": "startEvent"},
+      {"engineering_id": "review", "bpmn_type": "task"},
+      {"engineering_id": "end", "bpmn_type": "endEvent"}
+    ],
+    "flows": [
+      {"engineering_id": "flow-1", "flow_type": "sequenceFlow", "source_ref": "start", "target_ref": "review"},
+      {"engineering_id": "flow-2", "flow_type": "sequenceFlow", "source_ref": "review", "target_ref": "end"}
+    ],
+    "statistics": {
+      "flowCount": 2,
+      "semanticElementCount": 3
+    }
+  }
+}
