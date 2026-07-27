@@ -3,7 +3,6 @@ from __future__ import annotations
 import hashlib
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Dict, List, Optional
 
 from lxml import etree
 
@@ -27,7 +26,7 @@ def _sha256(path: Path) -> str:
         for chunk in iter(lambda:f.read(1024*1024),b''): h.update(chunk)
     return h.hexdigest()
 
-def _local_attrs(el: etree._Element) -> Dict[str,str]:
+def _local_attrs(el: etree._Element) -> dict[str,str]:
     out={}
     for k,v in el.attrib.items():
         try: key=etree.QName(k).localname
@@ -35,7 +34,7 @@ def _local_attrs(el: etree._Element) -> Dict[str,str]:
         out[key]=v
     return out
 
-def _style(el: etree._Element) -> Dict[str,str]:
+def _style(el: etree._Element) -> dict[str,str]:
     result={}
     if el.get('style'):
         for item in el.get('style').split(';'):
@@ -45,10 +44,10 @@ def _style(el: etree._Element) -> Dict[str,str]:
         if el.get(k) is not None: result[k]=el.get(k)
     return result
 
-def _metadata(el: etree._Element) -> Dict[str,str]:
+def _metadata(el: etree._Element) -> dict[str,str]:
     return {k:v for k,v in _local_attrs(el).items() if k.startswith('data-') and k not in SEMANTIC_ATTRS}
 
-def _text(el: etree._Element) -> Optional[str]:
+def _text(el: etree._Element) -> str | None:
     values=[]
     for node in el.iter():
         if etree.QName(node).localname in ('text','tspan') and node.text:
@@ -80,7 +79,7 @@ class SemanticSvgParser:
         parser=etree.XMLParser(remove_blank_text=False, recover=False, huge_tree=True)
         tree=etree.parse(str(path), parser)
         root=tree.getroot()
-        diagnostics: List[Diagnostic]=[]
+        diagnostics: list[Diagnostic]=[]
 
         # XML/SVG ID inventory
         id_nodes=defaultdict(list)

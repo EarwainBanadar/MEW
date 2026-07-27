@@ -1,8 +1,9 @@
 
 from __future__ import annotations
 
+import builtins
 from collections import OrderedDict
-from typing import Dict, Iterable, Iterator, List, Optional
+from collections.abc import Iterable, Iterator
 
 from .base import Rule
 from .model import RuleCategory, RuleSeverity
@@ -54,13 +55,13 @@ class RuleRegistry:
     def list(
         self,
         *,
-        category: Optional[RuleCategory] = None,
-        severity: Optional[RuleSeverity] = None,
+        category: RuleCategory | None = None,
+        severity: RuleSeverity | None = None,
         enabled_only: bool = False,
-        tags: Optional[Iterable[str]] = None,
-    ) -> List[Rule]:
+        tags: Iterable[str] | None = None,
+    ) -> builtins.list[Rule]:
         tag_set = set(tags or [])
-        result: List[Rule] = []
+        result: list[Rule] = []
         for rule in self:
             definition = rule.definition
             if category is not None and definition.category != category:
@@ -74,5 +75,5 @@ class RuleRegistry:
             result.append(rule)
         return result
 
-    def manifest(self) -> List[Dict]:
+    def manifest(self) -> builtins.list[dict]:
         return [rule.definition.to_dict() for rule in self]

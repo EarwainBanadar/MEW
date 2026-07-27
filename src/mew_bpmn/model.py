@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 class ObjectKind(str, Enum):
@@ -77,24 +77,24 @@ class Bounds:
 
 @dataclass
 class Geometry:
-    bounds: Optional[Bounds] = None
-    points: List[Point] = field(default_factory=list)
-    path_data: Optional[str] = None
-    transform: Optional[str] = None
+    bounds: Bounds | None = None
+    points: list[Point] = field(default_factory=list)
+    path_data: str | None = None
+    transform: str | None = None
 
 @dataclass
 class Presentation:
-    style: Dict[str, str] = field(default_factory=dict)
-    primitives: List[Dict[str, Any]] = field(default_factory=list)
+    style: dict[str, str] = field(default_factory=dict)
+    primitives: list[dict[str, Any]] = field(default_factory=list)
     visible: bool = True
-    layer: Optional[str] = None
+    layer: str | None = None
 
 @dataclass
 class Provenance:
-    svg_id: Optional[str] = None
-    source_xpath: Optional[str] = None
-    parent_svg_id: Optional[str] = None
-    source_sha256: Optional[str] = None
+    svg_id: str | None = None
+    source_xpath: str | None = None
+    parent_svg_id: str | None = None
+    source_sha256: str | None = None
 
 @dataclass
 class EngineeringMetadata:
@@ -102,58 +102,58 @@ class EngineeringMetadata:
     review_status: str = "UNREVIEWED"
     qa_status: str = "UNTESTED"
     release_status: str = "DRAFT"
-    custom: Dict[str, Any] = field(default_factory=dict)
+    custom: dict[str, Any] = field(default_factory=dict)
 
 @dataclass
 class EngineeringObject:
     engineering_id: str
     object_kind: ObjectKind
     bpmn_type: str
-    name: Optional[str] = None
-    documentation: Optional[str] = None
+    name: str | None = None
+    documentation: str | None = None
     geometry: Geometry = field(default_factory=Geometry)
     presentation: Presentation = field(default_factory=Presentation)
     provenance: Provenance = field(default_factory=Provenance)
     metadata: EngineeringMetadata = field(default_factory=EngineeringMetadata)
-    incoming: List[str] = field(default_factory=list)
-    outgoing: List[str] = field(default_factory=list)
+    incoming: list[str] = field(default_factory=list)
+    outgoing: list[str] = field(default_factory=list)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
         data["object_kind"] = self.object_kind.value
         return data
 
 @dataclass
 class Process(EngineeringObject):
-    participant_ids: List[str] = field(default_factory=list)
-    lane_set_ids: List[str] = field(default_factory=list)
-    flow_node_ids: List[str] = field(default_factory=list)
-    flow_ids: List[str] = field(default_factory=list)
-    artifact_ids: List[str] = field(default_factory=list)
+    participant_ids: list[str] = field(default_factory=list)
+    lane_set_ids: list[str] = field(default_factory=list)
+    flow_node_ids: list[str] = field(default_factory=list)
+    flow_ids: list[str] = field(default_factory=list)
+    artifact_ids: list[str] = field(default_factory=list)
 
 @dataclass
 class Participant(EngineeringObject):
-    process_ref: Optional[str] = None
+    process_ref: str | None = None
 
 @dataclass
 class LaneSet(EngineeringObject):
-    lane_ids: List[str] = field(default_factory=list)
+    lane_ids: list[str] = field(default_factory=list)
 
 @dataclass
 class Lane(EngineeringObject):
-    parent_lane_id: Optional[str] = None
-    child_lane_ids: List[str] = field(default_factory=list)
-    flow_node_ids: List[str] = field(default_factory=list)
+    parent_lane_id: str | None = None
+    child_lane_ids: list[str] = field(default_factory=list)
+    flow_node_ids: list[str] = field(default_factory=list)
 
 @dataclass
 class FlowNode(EngineeringObject):
-    lane_id: Optional[str] = None
+    lane_id: str | None = None
 
 @dataclass
 class Task(FlowNode):
     task_kind: TaskKind = TaskKind.GENERIC
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         data = super().to_dict()
         data["task_kind"] = self.task_kind.value
         return data
@@ -162,7 +162,7 @@ class Task(FlowNode):
 class Event(FlowNode):
     event_kind: EventKind = EventKind.START
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         data = super().to_dict()
         data["event_kind"] = self.event_kind.value
         return data
@@ -171,7 +171,7 @@ class Event(FlowNode):
 class Gateway(FlowNode):
     gateway_kind: GatewayKind = GatewayKind.EXCLUSIVE
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         data = super().to_dict()
         data["gateway_kind"] = self.gateway_kind.value
         return data
@@ -182,7 +182,7 @@ class Flow(EngineeringObject):
     source_ref: str = ""
     target_ref: str = ""
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         data = super().to_dict()
         data["flow_kind"] = self.flow_kind.value
         return data

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from typing import Dict, Optional, Tuple
 
 from .model import RuleDefinition
 
@@ -11,7 +10,7 @@ class KnowledgeBaseError(RuntimeError): pass
 class DuplicateKnowledgeRule(KnowledgeBaseError): pass
 class InvalidKnowledgeRule(KnowledgeBaseError): pass
 class UnsupportedKnowledgeFormat(KnowledgeBaseError): pass
-def parse_semver(v:str)->Tuple[int,int,int]:
+def parse_semver(v:str)->tuple[int,int,int]:
  m=re.fullmatch(r"(\d+)\.(\d+)\.(\d+)",v.strip())
  if not m: raise InvalidKnowledgeRule(f"Invalid semantic version: {v}")
  return tuple(map(int,m.groups()))
@@ -20,13 +19,13 @@ class KnowledgeRuleRecord:
  definition:RuleDefinition; source_path:str; source_format:str; source_sha256:str
  def to_dict(self): return {'definition':self.definition.to_dict(),'source_path':self.source_path,'source_format':self.source_format,'source_sha256':self.source_sha256}
 class KnowledgeBaseRepository:
- def __init__(self): self._records:Dict[Tuple[str,str],KnowledgeRuleRecord]={}
+ def __init__(self): self._records:dict[tuple[str,str],KnowledgeRuleRecord]={}
  def __len__(self): return len(self._records)
  def add(self,r):
   k=(r.definition.rule_id,r.definition.version); parse_semver(k[1])
   if k in self._records: raise DuplicateKnowledgeRule(f"{k[0]}@{k[1]}")
   self._records[k]=r
- def get(self,rule_id,version:Optional[str]=None):
+ def get(self,rule_id,version:str | None=None):
   if version is not None:
    if (rule_id,version) not in self._records: raise KeyError(f"Unknown rule version: {rule_id}@{version}")
    return self._records[(rule_id,version)]

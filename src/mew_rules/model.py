@@ -4,7 +4,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 
 class RuleCategory(str, Enum):
@@ -48,8 +48,8 @@ class RuleDefinition:
     severity: RuleSeverity
     scope: RuleScope
     enabled_by_default: bool = True
-    tags: List[str] = field(default_factory=list)
-    acceptance_criteria: List[str] = field(default_factory=list)
+    tags: list[str] = field(default_factory=list)
+    acceptance_criteria: list[str] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         if not self.rule_id or not self.rule_id.strip():
@@ -59,7 +59,7 @@ class RuleDefinition:
         if not self.title or not self.title.strip():
             raise ValueError("title must not be empty")
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
         data["category"] = self.category.value
         data["severity"] = self.severity.value
@@ -72,12 +72,12 @@ class RuleFinding:
     rule_id: str
     severity: RuleSeverity
     message: str
-    object_id: Optional[str] = None
-    location: Optional[str] = None
-    recommendation: Optional[str] = None
-    evidence: Dict[str, Any] = field(default_factory=dict)
+    object_id: str | None = None
+    location: str | None = None
+    recommendation: str | None = None
+    evidence: dict[str, Any] = field(default_factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         data = asdict(self)
         data["severity"] = self.severity.value
         return data
@@ -88,9 +88,9 @@ class RuleExecutionResult:
     rule_id: str
     rule_version: str
     status: RuleStatus
-    findings: List[RuleFinding] = field(default_factory=list)
+    findings: list[RuleFinding] = field(default_factory=list)
     duration_ms: float = 0.0
-    error_message: Optional[str] = None
+    error_message: str | None = None
     executed_at_utc: str = field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat()
     )
@@ -99,7 +99,7 @@ class RuleExecutionResult:
     def finding_count(self) -> int:
         return len(self.findings)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "rule_id": self.rule_id,
             "rule_version": self.rule_version,
@@ -115,8 +115,8 @@ class RuleExecutionResult:
 @dataclass
 class RuleContext:
     repository: Any
-    configuration: Dict[str, Any] = field(default_factory=dict)
-    services: Dict[str, Any] = field(default_factory=dict)
+    configuration: dict[str, Any] = field(default_factory=dict)
+    services: dict[str, Any] = field(default_factory=dict)
 
     def require_service(self, name: str) -> Any:
         if name not in self.services:
