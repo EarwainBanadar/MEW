@@ -5,8 +5,12 @@ import hashlib
 import json
 import re
 import sys
-import tomllib
 from pathlib import Path
+
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python 3.10 compatibility
+    import tomli as tomllib
 
 
 def project_version(root: Path) -> str:
