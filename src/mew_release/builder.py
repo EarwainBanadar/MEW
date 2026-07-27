@@ -5,8 +5,8 @@ import json
 import mimetypes
 import shutil
 import zipfile
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional
 
 from .models import ArtifactRecord, ReleaseBuildResult, ReleaseDescriptor, ReleaseError
 
@@ -32,10 +32,10 @@ class ReleaseBuilder:
     def __init__(self, generator_version: str = "1.0.0") -> None:
         self.generator_version = generator_version
 
-    def discover(self, source_root: Path, include: Iterable[str], exclude: Iterable[str] = ()) -> List[Path]:
+    def discover(self, source_root: Path, include: Iterable[str], exclude: Iterable[str] = ()) -> list[Path]:
         root = source_root.resolve()
         excluded = set(exclude)
-        files: Dict[str, Path] = {}
+        files: dict[str, Path] = {}
         for pattern in include:
             for path in root.glob(pattern):
                 if not path.is_file():
@@ -46,10 +46,10 @@ class ReleaseBuilder:
                 files[rel] = path
         return [files[key] for key in sorted(files)]
 
-    def inventory(self, source_root: Path, files: Iterable[Path], required_paths: Iterable[str] = ()) -> List[ArtifactRecord]:
+    def inventory(self, source_root: Path, files: Iterable[Path], required_paths: Iterable[str] = ()) -> list[ArtifactRecord]:
         root = source_root.resolve()
         required = set(required_paths)
-        records: List[ArtifactRecord] = []
+        records: list[ArtifactRecord] = []
         seen = set()
         for path in files:
             path = path.resolve()
@@ -66,7 +66,7 @@ class ReleaseBuilder:
             raise ReleaseError("Missing required artifacts: " + ", ".join(missing))
         return sorted(records, key=lambda r: r.logical_path)
 
-    def build(self, descriptor: ReleaseDescriptor, records: List[ArtifactRecord], output_root: Path, archive_name: Optional[str] = None) -> ReleaseBuildResult:
+    def build(self, descriptor: ReleaseDescriptor, records: list[ArtifactRecord], output_root: Path, archive_name: str | None = None) -> ReleaseBuildResult:
         if not records:
             raise ReleaseError("Cannot build an empty release")
         output_root.mkdir(parents=True, exist_ok=True)
@@ -107,7 +107,7 @@ class ReleaseBuilder:
                     z.writestr(info,path.read_bytes())
         return ReleaseBuildResult(str(release_dir),str(archive),str(release_dir/MANIFEST_NAME),len(records),sum(r.size for r in records),sha256_file(archive))
 
-    def verify(self, release_directory: Path) -> Dict[str, object]:
+    def verify(self, release_directory: Path) -> dict[str, object]:
         manifest_path=release_directory/MANIFEST_NAME
         if not manifest_path.exists(): raise ReleaseError("Release manifest missing")
         manifest=json.loads(manifest_path.read_text(encoding="utf-8"))

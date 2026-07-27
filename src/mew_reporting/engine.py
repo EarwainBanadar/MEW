@@ -5,7 +5,7 @@ import html
 import json
 from collections import Counter
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 from .models import ReportingError, ReportMetadata
 
@@ -15,7 +15,7 @@ class ReportingEngine:
     def __init__(self, generator_version: str = "1.0.0") -> None:
         self.generator_version = generator_version
 
-    def load_evaluation(self, path: Path) -> Dict[str, Any]:
+    def load_evaluation(self, path: Path) -> dict[str, Any]:
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
         except Exception as exc:
@@ -23,7 +23,7 @@ class ReportingEngine:
         self.validate(data)
         return data
 
-    def validate(self, data: Dict[str, Any]) -> None:
+    def validate(self, data: dict[str, Any]) -> None:
         required = {"evaluation_id","selected_rule_count","finding_count","error_count","overall_status","results"}
         missing = sorted(required - set(data))
         if missing:
@@ -34,7 +34,7 @@ class ReportingEngine:
         if actual != data["finding_count"]:
             raise ReportingError(f"finding_count mismatch: declared={data['finding_count']} actual={actual}")
 
-    def normalize(self, data: Dict[str, Any]) -> Dict[str, Any]:
+    def normalize(self, data: dict[str, Any]) -> dict[str, Any]:
         self.validate(data)
         out = copy.deepcopy(data)
         out["results"] = sorted(out["results"], key=lambda r: (r.get("rule_id", ""), r.get("rule_version", "")))
@@ -45,7 +45,7 @@ class ReportingEngine:
             ))
         return out
 
-    def summarize(self, data: Dict[str, Any]) -> Dict[str, Any]:
+    def summarize(self, data: dict[str, Any]) -> dict[str, Any]:
         d = self.normalize(data)
         findings = [f for r in d["results"] for f in r.get("findings", [])]
         severity = Counter(f.get("severity", "unknown") for f in findings)
@@ -67,14 +67,14 @@ class ReportingEngine:
             "rules_requiring_attention": attention,
         }
 
-    def build_document(self, data: Dict[str, Any], metadata: ReportMetadata) -> Dict[str, Any]:
+    def build_document(self, data: dict[str, Any], metadata: ReportMetadata) -> dict[str, Any]:
         normalized = self.normalize(data)
         return {"report_metadata": metadata.to_dict(), "summary": self.summarize(normalized), "evaluation": normalized}
 
-    def render_json(self, data: Dict[str, Any], metadata: ReportMetadata) -> str:
+    def render_json(self, data: dict[str, Any], metadata: ReportMetadata) -> str:
         return json.dumps(self.build_document(data, metadata), indent=2, ensure_ascii=False, sort_keys=True) + "\n"
 
-    def render_markdown(self, data: Dict[str, Any], metadata: ReportMetadata) -> str:
+    def render_markdown(self, data: dict[str, Any], metadata: ReportMetadata) -> str:
         doc = self.build_document(data, metadata); s = doc["summary"]; e = doc["evaluation"]
         lines = [f"# {metadata.title}", "", f"**Report-ID:** `{metadata.report_id}`  ",
                  f"**Evaluation-ID:** `{s['evaluation_id']}`  ", f"**Status:** **{s['overall_status']}**  ",
@@ -104,7 +104,7 @@ class ReportingEngine:
         lines += ["", "## Reproduzierbarkeit", "", f"Quelle: `{metadata.source_name or 'nicht angegeben'}`", ""]
         return "\n".join(lines)
 
-    def render_html(self, data: Dict[str, Any], metadata: ReportMetadata) -> str:
+    def render_html(self, data: dict[str, Any], metadata: ReportMetadata) -> str:
         doc = self.build_document(data, metadata); s = doc["summary"]; e = doc["evaluation"]
         esc = html.escape
         sev_rows = "".join(f"<tr><td>{esc(k)}</td><td>{v}</td></tr>" for k,v in s["severity_counts"].items()) or "<tr><td>none</td><td>0</td></tr>"
@@ -127,7 +127,7 @@ body{{font-family:Arial,sans-serif;margin:0;background:#f5f6f8;color:#20242a}}ma
 <footer class='panel'>Generator {generator} · Quelle <code>{source}</code></footer>
 </main></body></html>""".format(title=esc(metadata.title),report_id=esc(metadata.report_id),evaluation_id=esc(s["evaluation_id"]),status=esc(s["overall_status"]),rules=s["selected_rule_count"],findings=s["finding_count"],errors=s["error_count"],sev_rows=sev_rows,rule_rows=rule_rows,cards=cards_html,generator=esc(metadata.generator_version),source=esc(metadata.source_name or "nicht angegeben"))
 
-    def write_all(self, data: Dict[str, Any], metadata: ReportMetadata, output_dir: Path, stem: str = "evaluation-report") -> Dict[str, str]:
+    def write_all(self, data: dict[str, Any], metadata: ReportMetadata, output_dir: Path, stem: str = "evaluation-report") -> dict[str, str]:
         output_dir.mkdir(parents=True, exist_ok=True)
         outputs = {"json": output_dir/f"{stem}.json", "markdown": output_dir/f"{stem}.md", "html": output_dir/f"{stem}.html"}
         outputs["json"].write_text(self.render_json(data, metadata), encoding="utf-8")

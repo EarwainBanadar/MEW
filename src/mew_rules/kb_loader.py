@@ -4,7 +4,7 @@ import hashlib
 import json
 import re
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 from .kb_repository import (
  InvalidKnowledgeRule,
@@ -16,7 +16,7 @@ from .model import RuleCategory, RuleDefinition, RuleScope, RuleSeverity
 
 REQ={'rule_id','version','title','description','rationale','category','severity','scope'}
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
-def definition(d:Dict[str,Any]):
+def definition(d:dict[str,Any]):
  miss=sorted(REQ-set(d))
  if miss: raise InvalidKnowledgeRule('Missing required fields: '+', '.join(miss))
  try:return RuleDefinition(rule_id=str(d['rule_id']),version=str(d['version']),title=str(d['title']),description=str(d['description']),rationale=str(d['rationale']),category=RuleCategory(str(d['category'])),severity=RuleSeverity(str(d['severity'])),scope=RuleScope(str(d['scope'])),enabled_by_default=bool(d.get('enabled_by_default',True)),tags=list(d.get('tags',[])),acceptance_criteria=list(d.get('acceptance_criteria',[])))

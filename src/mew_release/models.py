@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
-from typing import Any, Dict
+from typing import Any
 
 
 class ReleaseError(RuntimeError):
@@ -17,9 +17,9 @@ class ReleaseDescriptor:
     created_utc: str
     source_root: str
     generator_version: str = "1.0.0"
-    metadata: Dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
 @dataclass(frozen=True)
@@ -31,7 +31,7 @@ class ArtifactRecord:
     media_type: str
     required: bool = True
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
 @dataclass(frozen=True)
@@ -43,5 +43,5 @@ class ReleaseBuildResult:
     total_bytes: int
     release_sha256: str
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return asdict(self)

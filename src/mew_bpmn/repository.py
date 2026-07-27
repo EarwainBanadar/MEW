@@ -1,10 +1,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from contextlib import AbstractContextManager
 from copy import deepcopy
 from dataclasses import dataclass
-from typing import Dict, Iterator, List, Optional, Set
 
 from .model import EngineeringObject, Flow, FlowNode, ObjectKind
 
@@ -22,15 +22,15 @@ class UnresolvedReference(RepositoryError):
 class GraphAnalysis:
     node_count: int
     edge_count: int
-    roots: List[str]
-    sinks: List[str]
-    unreachable: List[str]
-    cycles: List[List[str]]
+    roots: list[str]
+    sinks: list[str]
+    unreachable: list[str]
+    cycles: list[list[str]]
 
 class BPMNRepository:
     """Single access point for typed BPMN engineering objects."""
     def __init__(self) -> None:
-        self._objects: Dict[str, EngineeringObject] = {}
+        self._objects: dict[str, EngineeringObject] = {}
         self._version: int = 0
 
     @property
@@ -54,8 +54,8 @@ class BPMNRepository:
         except KeyError as exc:
             raise KeyError(f"Unknown engineering ID: {engineering_id}") from exc
 
-    def find(self, *, object_kind: Optional[ObjectKind] = None,
-             bpmn_type: Optional[str] = None) -> List[EngineeringObject]:
+    def find(self, *, object_kind: ObjectKind | None = None,
+             bpmn_type: str | None = None) -> list[EngineeringObject]:
         result = list(self._objects.values())
         if object_kind is not None:
             result = [o for o in result if o.object_kind == object_kind]
@@ -63,17 +63,17 @@ class BPMNRepository:
             result = [o for o in result if o.bpmn_type == bpmn_type]
         return result
 
-    def flows(self) -> List[Flow]:
+    def flows(self) -> list[Flow]:
         return [o for o in self._objects.values() if isinstance(o, Flow)]
 
-    def flow_nodes(self) -> List[FlowNode]:
+    def flow_nodes(self) -> list[FlowNode]:
         return [o for o in self._objects.values() if isinstance(o, FlowNode)]
 
     def resolve_relationships(self) -> None:
         for obj in self._objects.values():
             obj.incoming.clear()
             obj.outgoing.clear()
-        missing: List[str] = []
+        missing: list[str] = []
         for flow in self.flows():
             if flow.source_ref not in self._objects:
                 missing.append(f"{flow.engineering_id}.source_ref={flow.source_ref}")
@@ -85,9 +85,9 @@ class BPMNRepository:
             self._objects[flow.source_ref].outgoing.append(flow.engineering_id)
             self._objects[flow.target_ref].incoming.append(flow.engineering_id)
 
-    def validate(self) -> List[str]:
-        errors: List[str] = []
-        seen: Set[str] = set()
+    def validate(self) -> list[str]:
+        errors: list[str] = []
+        seen: set[str] = set()
         for obj in self._objects.values():
             if obj.engineering_id in seen:
                 errors.append(f"Duplicate ID: {obj.engineering_id}")
@@ -101,7 +101,7 @@ class BPMNRepository:
 
     def graph_analysis(self) -> GraphAnalysis:
         nodes = {n.engineering_id for n in self.flow_nodes()}
-        adj: Dict[str, List[str]] = {n: [] for n in nodes}
+        adj: dict[str, list[str]] = {n: [] for n in nodes}
         indegree = {n: 0 for n in nodes}
         sequence_edges = 0
         for f in self.flows():
@@ -114,7 +114,7 @@ class BPMNRepository:
         roots = sorted([n for n in nodes if indegree[n] == 0])
         sinks = sorted([n for n in nodes if not adj[n]])
 
-        reachable: Set[str] = set()
+        reachable: set[str] = set()
         stack = list(roots)
         while stack:
             n = stack.pop()
@@ -124,9 +124,9 @@ class BPMNRepository:
             stack.extend(adj[n])
         unreachable = sorted(nodes - reachable)
 
-        cycles: List[List[str]] = []
+        cycles: list[list[str]] = []
         color = {n: 0 for n in nodes}
-        trail: List[str] = []
+        trail: list[str] = []
         def dfs(n: str) -> None:
             color[n] = 1
             trail.append(n)

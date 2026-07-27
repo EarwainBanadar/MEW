@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import List, Optional, Set
 
 from .model import RuleContext, RuleExecutionResult, RuleSeverity, RuleStatus
 from .registry import RuleRegistry
@@ -10,9 +9,9 @@ from .registry import RuleRegistry
 
 @dataclass(frozen=True)
 class EvaluationPolicy:
-    enabled_rule_ids: Optional[Set[str]] = None
-    disabled_rule_ids: Set[str] = field(default_factory=set)
-    minimum_severity: Optional[RuleSeverity] = None
+    enabled_rule_ids: set[str] | None = None
+    disabled_rule_ids: set[str] = field(default_factory=set)
+    minimum_severity: RuleSeverity | None = None
     fail_on_rule_error: bool = True
     stop_on_critical: bool = False
 
@@ -21,7 +20,7 @@ class EvaluationSummary:
     evaluation_id: str
     started_at_utc: str
     completed_at_utc: str
-    results: List[RuleExecutionResult]
+    results: list[RuleExecutionResult]
     selected_rule_count: int
     skipped_rule_count: int
     overall_status: str
@@ -52,7 +51,7 @@ class RuleEvaluator:
             if policy.minimum_severity is not None and rank[d.severity] < rank[policy.minimum_severity]: continue
             out.append(rule)
         return out
-    def evaluate(self, context: RuleContext, policy: Optional[EvaluationPolicy]=None) -> EvaluationSummary:
+    def evaluate(self, context: RuleContext, policy: EvaluationPolicy | None=None) -> EvaluationSummary:
         policy=policy or EvaluationPolicy()
         start=datetime.now(timezone.utc)
         rules=self._selected(policy); results=[]

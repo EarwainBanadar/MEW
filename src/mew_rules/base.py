@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from collections.abc import Callable, Iterable
 from time import perf_counter
-from typing import Callable, Iterable
 
 from .model import (
     RuleContext,
