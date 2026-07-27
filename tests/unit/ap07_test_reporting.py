@@ -1,6 +1,10 @@
+import json
 from pathlib import Path
-import json, pytest
-from mew_reporting import ReportingEngine, ReportMetadata, ReportingError
+
+import pytest
+
+from mew_reporting import ReportingEngine, ReportingError, ReportMetadata
+
 SOURCE = Path('/mnt/data/AP9_3_4_STANDARD_RULE_SET/reports/AP9.3.4_Standard_Rule_Set_Baseline.json')
 def engine(): return ReportingEngine()
 def meta(): return ReportMetadata(report_id='TEST-001', title='Test Report', source_name='fixture.json')

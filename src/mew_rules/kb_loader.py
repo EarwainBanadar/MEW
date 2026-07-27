@@ -1,9 +1,19 @@
 from __future__ import annotations
+
+import hashlib
+import json
+import re
 from pathlib import Path
-from typing import Any,Dict
-import hashlib,json,re
-from .kb_repository import InvalidKnowledgeRule,KnowledgeBaseRepository,KnowledgeRuleRecord,UnsupportedKnowledgeFormat
-from .model import RuleCategory,RuleDefinition,RuleScope,RuleSeverity
+from typing import Any, Dict
+
+from .kb_repository import (
+ InvalidKnowledgeRule,
+ KnowledgeBaseRepository,
+ KnowledgeRuleRecord,
+ UnsupportedKnowledgeFormat,
+)
+from .model import RuleCategory, RuleDefinition, RuleScope, RuleSeverity
+
 REQ={'rule_id','version','title','description','rationale','category','severity','scope'}
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 def definition(d:Dict[str,Any]):

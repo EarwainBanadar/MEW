@@ -1,8 +1,12 @@
 
 from __future__ import annotations
-import argparse, json
+
+import argparse
+import json
 from pathlib import Path
+
 from .builder import SemanticModelBuilder
+
 
 def main() -> int:
     p = argparse.ArgumentParser(description="AP9.2 BPMN Object Model builder")

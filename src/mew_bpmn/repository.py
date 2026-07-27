@@ -1,10 +1,13 @@
 
 from __future__ import annotations
+
 from contextlib import AbstractContextManager
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import Dict, Iterator, List, Optional, Set
+
 from .model import EngineeringObject, Flow, FlowNode, ObjectKind
+
 
 class RepositoryError(RuntimeError):
     pass

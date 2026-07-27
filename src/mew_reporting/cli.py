@@ -1,7 +1,10 @@
+import argparse
+import json
 from pathlib import Path
-import argparse, json
+
 from .engine import ReportingEngine
 from .models import ReportMetadata
+
 
 def main() -> int:
     p = argparse.ArgumentParser(description="AP9.3.5.1 Reporting Engine")

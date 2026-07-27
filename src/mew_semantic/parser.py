@@ -1,11 +1,21 @@
 from __future__ import annotations
+
 import hashlib
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Dict, List, Optional
+
 from lxml import etree
+
 from .geometry import geometry_for
-from .model import Diagnostic, Geometry, GraphicPrimitive, SemanticDocument, SemanticElement, SemanticFlow
+from .model import (
+    Diagnostic,
+    Geometry,
+    GraphicPrimitive,
+    SemanticDocument,
+    SemanticElement,
+    SemanticFlow,
+)
 
 SCHEMA_VERSION="0.1.0"
 STYLE_KEYS={"fill","stroke","stroke-width","stroke-dasharray","opacity","font-family","font-size","font-weight","text-anchor","marker-start","marker-mid","marker-end"}

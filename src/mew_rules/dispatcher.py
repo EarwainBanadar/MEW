@@ -1,7 +1,10 @@
 from __future__ import annotations
+
 from typing import Dict, Iterable, List
+
 from .base import Rule
 from .model import RuleScope
+
 
 class RuleDispatcher:
     """Validates and groups executable rules by their declared scope."""

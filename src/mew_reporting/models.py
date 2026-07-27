@@ -1,6 +1,7 @@
-from dataclasses import dataclass, asdict, field
-from typing import Optional, Dict, Any
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
+from typing import Any, Dict, Optional
+
 
 class ReportingError(RuntimeError):
     pass

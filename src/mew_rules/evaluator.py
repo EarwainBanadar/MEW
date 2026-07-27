@@ -1,9 +1,12 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from typing import List, Optional, Set
+
 from .model import RuleContext, RuleExecutionResult, RuleSeverity, RuleStatus
 from .registry import RuleRegistry
+
 
 @dataclass(frozen=True)
 class EvaluationPolicy:

@@ -1,6 +1,6 @@
 
-from pathlib import Path
 import importlib
+from pathlib import Path
 
 PACKAGES = ["mew_semantic", "mew_bpmn", "mew_rules", "mew_reporting", "mew_release"]
 

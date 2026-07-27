@@ -1,8 +1,13 @@
 from __future__ import annotations
+
+import argparse
+import datetime
+import json
 from pathlib import Path
-import argparse, datetime, json
+
 from .builder import ReleaseBuilder
 from .models import ReleaseDescriptor
+
 
 def main() -> int:
     p=argparse.ArgumentParser(description="AP9.3.5.2 Release Builder")

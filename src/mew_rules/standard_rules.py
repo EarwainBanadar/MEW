@@ -1,9 +1,13 @@
 from __future__ import annotations
-from collections import Counter,defaultdict
-from mew_bpmn.model import Event,EventKind,Gateway,GatewayKind,Task,FlowKind,ObjectKind
+
+from collections import Counter, defaultdict
+
+from mew_bpmn.model import Event, EventKind, FlowKind, Gateway, GatewayKind, ObjectKind, Task
+
 from .base import FunctionalRule
-from .model import RuleCategory,RuleDefinition,RuleFinding,RuleScope,RuleSeverity
+from .model import RuleCategory, RuleDefinition, RuleFinding, RuleScope, RuleSeverity
 from .registry import RuleRegistry
+
 
 def D(i,title,desc,cat,sev,scope,tags):
  return RuleDefinition(i,'1.0.0',title,desc,desc,cat,sev,scope,True,tags,[desc])
