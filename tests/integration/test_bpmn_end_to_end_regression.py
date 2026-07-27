@@ -1,3 +1,5 @@
+# ruff: noqa: I001
+
 import json
 from pathlib import Path
 
@@ -111,7 +113,9 @@ def test_reference_pipeline_matches_golden_and_builds_verified_release(tmp_path)
     )
     outputs = reporting.write_all(evaluation, metadata, reports, "bpmn-regression")
     assert set(outputs) == {"json", "markdown", "html"}
-    assert reporting.render_json(evaluation, metadata) == reporting.render_json(evaluation, metadata)
+    assert reporting.render_json(evaluation, metadata) == reporting.render_json(
+        evaluation, metadata
+    )
 
     release = ReleaseBuilder()
     files = release.discover(source, ["**/*"])
