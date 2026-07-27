@@ -1,9 +1,11 @@
 from pathlib import Path
+
 from mew_bpmn.builder import SemanticModelBuilder
 from mew_rules.baseline_rules import create_baseline_registry
 from mew_rules.dispatcher import RuleDispatcher
-from mew_rules.evaluator import RuleEvaluator,EvaluationPolicy
-from mew_rules.model import RuleContext,RuleSeverity
+from mew_rules.evaluator import EvaluationPolicy, RuleEvaluator
+from mew_rules.model import RuleContext, RuleSeverity
+
 SOURCE=Path('/mnt/data/AP9_1_SEMANTIC_PARSER/reports/Template_Management_RC1.12.6_semantic.json')
 def repo(): return SemanticModelBuilder().build_from_path(SOURCE)
 def test_dispatch_plan():

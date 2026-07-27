@@ -1,7 +1,12 @@
+import json
+import zipfile
 from pathlib import Path
-import json, zipfile, pytest
+
+import pytest
+
 from mew_release.builder import ReleaseBuilder, sha256_file
 from mew_release.models import ReleaseDescriptor, ReleaseError
+
 
 @pytest.fixture
 def source(tmp_path):

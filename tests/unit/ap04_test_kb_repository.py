@@ -1,8 +1,11 @@
 from pathlib import Path
+
 import pytest
-from mew_rules.kb_loader import KnowledgeBaseLoader,parse_markdown_rule
+
+from mew_rules.kb_loader import KnowledgeBaseLoader, parse_markdown_rule
 from mew_rules.kb_repository import *
-from mew_rules.model import RuleCategory,RuleSeverity
+from mew_rules.model import RuleCategory, RuleSeverity
+
 ROOT=Path(__file__).resolve().parents[1];KB=ROOT/'examples'/'kb'
 def test_semver():
  assert parse_semver('1.2.3')==(1,2,3)

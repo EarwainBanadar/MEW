@@ -1,8 +1,12 @@
 from __future__ import annotations
-from dataclasses import dataclass
-from typing import Dict,Optional,Tuple
+
 import re
+from dataclasses import dataclass
+from typing import Dict, Optional, Tuple
+
 from .model import RuleDefinition
+
+
 class KnowledgeBaseError(RuntimeError): pass
 class DuplicateKnowledgeRule(KnowledgeBaseError): pass
 class InvalidKnowledgeRule(KnowledgeBaseError): pass

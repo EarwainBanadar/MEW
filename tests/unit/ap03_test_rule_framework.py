@@ -4,12 +4,15 @@ import pytest
 from mew_rules.base import FunctionalRule
 from mew_rules.demo import create_demo_registry
 from mew_rules.model import (
-    RuleCategory, RuleContext, RuleDefinition, RuleFinding,
-    RuleScope, RuleSeverity, RuleStatus
+    RuleCategory,
+    RuleContext,
+    RuleDefinition,
+    RuleFinding,
+    RuleScope,
+    RuleSeverity,
+    RuleStatus,
 )
-from mew_rules.registry import (
-    DuplicateRuleIdError, RuleRegistry, UnknownRuleError
-)
+from mew_rules.registry import DuplicateRuleIdError, RuleRegistry, UnknownRuleError
 
 
 def definition(rule_id="KB-TEST-001", severity=RuleSeverity.ERROR):

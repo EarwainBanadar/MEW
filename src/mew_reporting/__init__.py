@@ -1,7 +1,7 @@
 """Reporting engine public API."""
 
 from .engine import ReportingEngine
-from .models import ReportMetadata, ReportingError
+from .models import ReportingError, ReportMetadata
 
 __all__ = [
     "ReportMetadata",

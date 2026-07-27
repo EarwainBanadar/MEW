@@ -1,7 +1,9 @@
 from __future__ import annotations
+
 from .base import FunctionalRule
 from .model import RuleCategory, RuleDefinition, RuleFinding, RuleScope, RuleSeverity
 from .registry import RuleRegistry
+
 
 def _def(i,title,desc,rat,cat,sev,scope):
  return RuleDefinition(i,'1.0.0',title,desc,rat,cat,sev,scope,True,['baseline'],[desc])

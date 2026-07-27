@@ -1,10 +1,12 @@
 from pathlib import Path
+
 from mew_bpmn.builder import SemanticModelBuilder
-from mew_bpmn.repository import BPMNRepository
 from mew_bpmn.model import *
-from mew_rules.standard_rules import create_standard_registry
+from mew_bpmn.repository import BPMNRepository
 from mew_rules.evaluator import RuleEvaluator
 from mew_rules.model import RuleContext
+from mew_rules.standard_rules import create_standard_registry
+
 ROOT=Path('/mnt/data/AP9_1_SEMANTIC_PARSER/reports/Template_Management_RC1.12.6_semantic.json')
 def test_catalog_has_36_unique_rules():
  r=create_standard_registry(); assert len(r)==36; assert len({x.definition.rule_id for x in r})==36

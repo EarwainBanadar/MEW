@@ -1,9 +1,13 @@
+import argparse
+import json
 from pathlib import Path
-import argparse,json
+
 from mew_bpmn.builder import SemanticModelBuilder
+
 from .baseline_rules import create_baseline_registry
-from .evaluator import RuleEvaluator,EvaluationPolicy
-from .model import RuleContext,RuleSeverity
+from .evaluator import EvaluationPolicy, RuleEvaluator
+from .model import RuleContext, RuleSeverity
+
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('semantic_json',type=Path);p.add_argument('-o','--output',type=Path,required=True);p.add_argument('--minimum-severity',choices=[s.value for s in RuleSeverity])

@@ -1,9 +1,13 @@
 from __future__ import annotations
+
+import copy
+import html
+import json
 from collections import Counter
 from pathlib import Path
 from typing import Any, Dict
-import copy, html, json
-from .models import ReportMetadata, ReportingError
+
+from .models import ReportingError, ReportMetadata
 
 SEVERITY_ORDER = {"critical":0,"error":1,"warning":2,"info":3,"unknown":4}
 
