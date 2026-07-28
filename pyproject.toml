@@ -64,12 +64,3 @@ exclude = ["releases", "examples"]
 # Incremental v0.10.0 quality gate: runtime defects, unused imports,
 # deterministic import sorting and selected Python 3.10 type-hint modernization.
 select = ["E9", "F401", "F63", "F7", "F82", "I", "UP006", "UP035", "UP045"]
-
-[tool.ruff.lint.isort]
-known-first-party = [
-  "mew_bpmn",
-  "mew_release",
-  "mew_reporting",
-  "mew_rules",
-  "mew_semantic"
-]
