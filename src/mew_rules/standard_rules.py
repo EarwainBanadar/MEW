@@ -55,15 +55,18 @@ def create_standard_registry():
  def e(c):
   ids={n.engineering_id for n in c.repository.flow_nodes()}
   for f in c.repository.flows():
-   if f.flow_kind==FlowKind.SEQUENCE and (f.source_ref not in ids or f.target_ref not in ids): yield F(d,'Sequence flow endpoint is not a flow node',f.engineering_id)
+   if f.flow_kind==FlowKind.SEQUENCE and (f.source_ref not in ids or f.target_ref not in ids):
+    yield F(d,'Sequence flow endpoint is not a flow node',f.engineering_id)
  add(d,e)
  d=D('KB-BPMN-010','No duplicate directed sequence edges','Duplicate sequence edges between identical endpoints are prohibited.',RuleCategory.QUALITY,RuleSeverity.WARNING,RuleScope.GRAPH,['flow'])
  def e(c):
   pairs=defaultdict(list)
   for f in c.repository.flows():
-   if f.flow_kind==FlowKind.SEQUENCE:pairs[(f.source_ref,f.target_ref)].append(f.engineering_id)
+   if f.flow_kind==FlowKind.SEQUENCE:
+    pairs[(f.source_ref,f.target_ref)].append(f.engineering_id)
   for p,v in pairs.items():
-   if len(v)>1: yield F(d,'Duplicate directed sequence edges',v[0],ev={'edge':p,'flows':v})
+   if len(v)>1:
+    yield F(d,'Duplicate directed sequence edges',v[0],ev={'edge':p,'flows':v})
  add(d,e)
  # Events
  d=D('KB-BPMN-011','Start events have no incoming sequence flow','Start events must not have incoming sequence flows.',RuleCategory.SEMANTIC,RuleSeverity.ERROR,RuleScope.OBJECT,['event']); add(d,lambda c:(F(d,'Start event has incoming flow',n.engineering_id) for n in c.repository.flow_nodes() if isinstance(n,Event) and n.event_kind==EventKind.START and n.incoming))
