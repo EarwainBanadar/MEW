@@ -20,9 +20,12 @@ def create_standard_registry():
  def add(d,fn):
   def bound(c, _d=d, _fn=fn):
    global _ACTIVE_DEFINITION
-   previous=_ACTIVE_DEFINITION; _ACTIVE_DEFINITION=_d
-   try: return list(_fn(c))
-   finally: _ACTIVE_DEFINITION=previous
+   previous=_ACTIVE_DEFINITION
+   _ACTIVE_DEFINITION=_d
+   try:
+    return list(_fn(c))
+   finally:
+    _ACTIVE_DEFINITION=previous
   r.register(FunctionalRule(d,bound))
  # Governance / identity
  d=D('KB-BPMN-001','Engineering IDs present','Every object requires a non-empty engineering ID.',RuleCategory.GOVERNANCE,RuleSeverity.CRITICAL,RuleScope.REPOSITORY,['identity']); add(d,lambda c:(F(d,'Missing engineering ID') for o in c.repository if not str(o.engineering_id).strip()))
