@@ -1,3 +1,4 @@
+import hashlib
 import json
 from pathlib import Path
 
@@ -5,7 +6,6 @@ import pytest
 
 from mew_bpmn import SemanticModelBuilder
 from mew_release import ReleaseBuilder, ReleaseDescriptor
-from mew_release.builder import sha256_file
 from mew_reporting import ReportMetadata, ReportingEngine
 from mew_rules.baseline_rules import create_baseline_registry
 from mew_rules.evaluator import RuleEvaluator
@@ -140,7 +140,8 @@ def test_reference_pipeline_matches_golden_and_builds_verified_release(tmp_path)
         item["logical_path"] for item in manifest["artifacts"]
     )
     assert len(manifest["manifest_payload_sha256"]) == 64
-    assert sha256_file(Path(result.archive_path)) == result.release_sha256
+    archive_sha256 = hashlib.sha256(Path(result.archive_path).read_bytes()).hexdigest()
+    assert archive_sha256 == result.release_sha256
 
     tampered = Path(result.release_directory) / "artifacts" / "evaluation.json"
     tampered.write_text("{}\n", encoding="utf-8")
