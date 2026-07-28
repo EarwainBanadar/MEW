@@ -12,7 +12,8 @@ def create_baseline_registry():
  r=RuleRegistry()
  d1=_def('KB-EVAL-001','Repository consistency','Repository has no validation errors.','Invalid references make evaluation unreliable.',RuleCategory.STRUCTURAL,RuleSeverity.CRITICAL,RuleScope.REPOSITORY)
  def e1(ctx):
-  for err in ctx.repository.validate(): yield RuleFinding(d1.rule_id,d1.severity,err,recommendation='Repair repository consistency before release.')
+  for err in ctx.repository.validate():
+   yield RuleFinding(d1.rule_id,d1.severity,err,recommendation='Repair repository consistency before release.')
  r.register(FunctionalRule(d1,e1))
  d2=_def('KB-EVAL-002','Flow references resolve','Every flow source and target exists.','Flows require resolvable endpoints.',RuleCategory.SEMANTIC,RuleSeverity.ERROR,RuleScope.FLOW)
  def e2(ctx):
@@ -30,6 +31,7 @@ def create_baseline_registry():
  d4=_def('KB-EVAL-004','Graph roots exist','The sequence-flow graph has at least one root.','Executable process graphs require an entry point.',RuleCategory.STRUCTURAL,RuleSeverity.ERROR,RuleScope.GRAPH)
  def e4(ctx):
   g=ctx.repository.graph_analysis()
-  if not g.roots: yield RuleFinding(d4.rule_id,d4.severity,'No sequence-flow root detected.')
+  if not g.roots:
+   yield RuleFinding(d4.rule_id,d4.severity,'No sequence-flow root detected.')
  r.register(FunctionalRule(d4,e4))
  return r
