@@ -1,12 +1,18 @@
+from __future__ import annotations
 
-from pathlib import Path
+import datetime
 import hashlib
 import json
 import zipfile
-import datetime
+from pathlib import Path
+
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python 3.10 compatibility
+    import tomli as tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.9.3"
+VERSION = str(tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]["version"])
 OUT = ROOT / "releases"
 OUT.mkdir(exist_ok=True)
 ZIP = OUT / f"MEW_v{VERSION}_source.zip"
@@ -28,8 +34,9 @@ with zipfile.ZipFile(ZIP, "w", zipfile.ZIP_DEFLATED) as archive:
     for path in files:
         rel = path.relative_to(ROOT)
         info = zipfile.ZipInfo(str(rel).replace("\\", "/"))
-        info.date_time = (2026, 1, 1, 0, 0, 0)
+        info.date_time = (1980, 1, 1, 0, 0, 0)
         info.compress_type = zipfile.ZIP_DEFLATED
+        info.external_attr = 0o100644 << 16
         archive.writestr(info, path.read_bytes())
 
 manifest = {
@@ -41,18 +48,26 @@ manifest = {
     "file_count": len(files),
     "files": [
         {
-            "path": str(p.relative_to(ROOT)).replace("\\", "/"),
-            "size": p.stat().st_size,
-            "sha256": hashlib.sha256(p.read_bytes()).hexdigest(),
+            "path": str(path.relative_to(ROOT)).replace("\\", "/"),
+            "size": path.stat().st_size,
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         }
-        for p in files
+        for path in files
     ],
 }
-(OUT / f"MEW_v{VERSION}_manifest.json").write_text(
-    json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8"
+manifest_path = OUT / f"MEW_v{VERSION}_manifest.json"
+manifest_path.write_text(
+    json.dumps(manifest, indent=2, ensure_ascii=False, sort_keys=True) + "\n",
+    encoding="utf-8",
 )
-print(json.dumps({
-    "archive": str(ZIP),
-    "sha256": manifest["archive_sha256"],
-    "file_count": len(files)
-}, indent=2))
+print(
+    json.dumps(
+        {
+            "archive": str(ZIP),
+            "manifest": str(manifest_path),
+            "sha256": manifest["archive_sha256"],
+            "file_count": len(files),
+        },
+        indent=2,
+    )
+)
