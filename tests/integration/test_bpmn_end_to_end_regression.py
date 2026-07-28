@@ -2,7 +2,6 @@ import hashlib
 import json
 from pathlib import Path
 
-import pytest
 from mew_bpmn import SemanticModelBuilder
 from mew_release import ReleaseBuilder, ReleaseDescriptor
 from mew_reporting import ReportMetadata, ReportingEngine
@@ -10,6 +9,7 @@ from mew_rules.baseline_rules import create_baseline_registry
 from mew_rules.evaluator import RuleEvaluator
 from mew_rules.model import RuleContext
 from mew_semantic import parse_svg
+import pytest
 
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "bpmn"
 REFERENCE_SVG = FIXTURES / "reference_process.svg"
