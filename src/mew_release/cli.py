@@ -29,4 +29,6 @@ def main() -> int:
     print(json.dumps({"build":result.to_dict(),"verification":verification},indent=2,ensure_ascii=False))
     return 0 if verification["status"]=="PASS" else 2
 
-if __name__ == "__main__": raise SystemExit(main())
+
+if __name__ == "__main__":
+    raise SystemExit(main())
