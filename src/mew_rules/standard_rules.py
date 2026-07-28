@@ -33,7 +33,8 @@ def create_standard_registry():
  def e(c):
   ids=[o.engineering_id for o in c.repository]
   for x,n in Counter(ids).items():
-   if n>1: yield F(d,f'Duplicate engineering ID: {x}',x)
+   if n>1:
+    yield F(d,f'Duplicate engineering ID: {x}',x)
  add(d,e)
  d=D('KB-BPMN-003','Provenance available','Every object should retain source provenance.',RuleCategory.GOVERNANCE,RuleSeverity.WARNING,RuleScope.OBJECT,['provenance']); add(d,lambda c:(F(d,'Missing source provenance',o.engineering_id) for o in c.repository if not o.provenance.svg_id and not o.provenance.source_xpath))
  d=D('KB-BPMN-004','Version metadata present','Every object requires engineering version metadata.',RuleCategory.GOVERNANCE,RuleSeverity.ERROR,RuleScope.OBJECT,['metadata']); add(d,lambda c:(F(d,'Missing version metadata',o.engineering_id) for o in c.repository if not o.metadata.version))
@@ -43,8 +44,10 @@ def create_standard_registry():
  def e(c):
   ids={o.engineering_id for o in c.repository}
   for f in c.repository.flows():
-   if f.source_ref not in ids: yield F(d,'Unresolved source reference',f.engineering_id,ev={'source_ref':f.source_ref})
-   if f.target_ref not in ids: yield F(d,'Unresolved target reference',f.engineering_id,ev={'target_ref':f.target_ref})
+   if f.source_ref not in ids:
+    yield F(d,'Unresolved source reference',f.engineering_id,ev={'source_ref':f.source_ref})
+   if f.target_ref not in ids:
+    yield F(d,'Unresolved target reference',f.engineering_id,ev={'target_ref':f.target_ref})
  add(d,e)
  d=D('KB-BPMN-007','No self-loop sequence flows','Sequence flows should not connect an element to itself.',RuleCategory.QUALITY,RuleSeverity.ERROR,RuleScope.FLOW,['flow']); add(d,lambda c:(F(d,'Self-loop sequence flow',f.engineering_id) for f in c.repository.flows() if f.flow_kind==FlowKind.SEQUENCE and f.source_ref==f.target_ref))
  d=D('KB-BPMN-008','Flow IDs present','Every flow requires an engineering ID.',RuleCategory.GOVERNANCE,RuleSeverity.CRITICAL,RuleScope.FLOW,['flow','identity']); add(d,lambda c:(F(d,'Flow has no ID') for f in c.repository.flows() if not f.engineering_id))
