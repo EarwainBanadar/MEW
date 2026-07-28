@@ -1,18 +1,16 @@
-# ruff: noqa: I001
-
+import hashlib
 import json
 from pathlib import Path
 
 import pytest
 
-from mew_bpmn.builder import SemanticModelBuilder
-from mew_release.builder import ReleaseBuilder, sha256_file
-from mew_release.models import ReleaseDescriptor
-from mew_reporting import ReportMetadata, ReportingEngine
-from mew_rules.baseline_rules import create_baseline_registry
-from mew_rules.evaluator import RuleEvaluator
-from mew_rules.model import RuleContext
-from mew_semantic.parser import parse_svg
+import mew_bpmn
+import mew_release
+import mew_reporting
+import mew_rules.baseline_rules
+import mew_rules.evaluator
+import mew_rules.model
+import mew_semantic
 
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "bpmn"
 REFERENCE_SVG = FIXTURES / "reference_process.svg"
@@ -74,15 +72,17 @@ def _normalized_evaluation(summary):
 
 
 def _evaluate(document):
-    repository = SemanticModelBuilder().build(document.to_dict())
-    return RuleEvaluator(create_baseline_registry()).evaluate(RuleContext(repository))
+    repository = mew_bpmn.SemanticModelBuilder().build(document.to_dict())
+    return mew_rules.evaluator.RuleEvaluator(
+        mew_rules.baseline_rules.create_baseline_registry()
+    ).evaluate(mew_rules.model.RuleContext(repository))
 
 
 def test_reference_pipeline_matches_golden_and_builds_verified_release(tmp_path):
     golden = json.loads(GOLDEN.read_text(encoding="utf-8"))
 
-    first_document = parse_svg(REFERENCE_SVG, strict=True)
-    second_document = parse_svg(REFERENCE_SVG, strict=True)
+    first_document = mew_semantic.parse_svg(REFERENCE_SVG, strict=True)
+    second_document = mew_semantic.parse_svg(REFERENCE_SVG, strict=True)
     assert _semantic_projection(first_document) == golden["semantic"]
     assert _semantic_projection(second_document) == _semantic_projection(first_document)
 
@@ -104,8 +104,8 @@ def test_reference_pipeline_matches_golden_and_builds_verified_release(tmp_path)
         encoding="utf-8",
     )
 
-    reporting = ReportingEngine()
-    metadata = ReportMetadata(
+    reporting = mew_reporting.ReportingEngine()
+    metadata = mew_reporting.ReportMetadata(
         report_id="BPMN-REGRESSION-001",
         title="BPMN Regression Report",
         source_name=REFERENCE_SVG.name,
@@ -117,14 +117,14 @@ def test_reference_pipeline_matches_golden_and_builds_verified_release(tmp_path)
         evaluation, metadata
     )
 
-    release = ReleaseBuilder()
+    release = mew_release.ReleaseBuilder()
     files = release.discover(source, ["**/*"])
     records = release.inventory(
         source,
         files,
         ["semantic.json", "evaluation.json", "reports/bpmn-regression.json"],
     )
-    descriptor = ReleaseDescriptor(
+    descriptor = mew_release.ReleaseDescriptor(
         "REL_BPMN_REGRESSION",
         "0.10.0",
         "Deterministic BPMN regression reference",
@@ -142,7 +142,8 @@ def test_reference_pipeline_matches_golden_and_builds_verified_release(tmp_path)
         item["logical_path"] for item in manifest["artifacts"]
     )
     assert len(manifest["manifest_payload_sha256"]) == 64
-    assert sha256_file(Path(result.archive_path)) == result.release_sha256
+    archive_sha256 = hashlib.sha256(Path(result.archive_path).read_bytes()).hexdigest()
+    assert archive_sha256 == result.release_sha256
 
     tampered = Path(result.release_directory) / "artifacts" / "evaluation.json"
     tampered.write_text("{}\n", encoding="utf-8")
@@ -163,4 +164,4 @@ def test_invalid_semantic_input_is_rejected_in_strict_mode(tmp_path):
     )
 
     with pytest.raises(ValueError, match="Semantic parsing failed"):
-        parse_svg(invalid, strict=True)
+        mew_semantic.parse_svg(invalid, strict=True)
