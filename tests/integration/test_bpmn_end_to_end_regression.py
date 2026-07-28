@@ -3,14 +3,14 @@ from pathlib import Path
 
 import pytest
 
-from mew_bpmn.builder import SemanticModelBuilder
-from mew_release.builder import ReleaseBuilder, sha256_file
-from mew_release.models import ReleaseDescriptor
+from mew_bpmn import SemanticModelBuilder
+from mew_release import ReleaseBuilder, ReleaseDescriptor
+from mew_release.builder import sha256_file
 from mew_reporting import ReportMetadata, ReportingEngine
 from mew_rules.baseline_rules import create_baseline_registry
 from mew_rules.evaluator import RuleEvaluator
 from mew_rules.model import RuleContext
-from mew_semantic.parser import parse_svg
+from mew_semantic import parse_svg
 
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "bpmn"
 REFERENCE_SVG = FIXTURES / "reference_process.svg"
