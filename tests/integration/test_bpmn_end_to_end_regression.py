@@ -3,7 +3,6 @@ import json
 from pathlib import Path
 
 import pytest
-
 from mew_bpmn import SemanticModelBuilder
 from mew_release import ReleaseBuilder, ReleaseDescriptor
 from mew_reporting import ReportMetadata, ReportingEngine
