@@ -2,6 +2,8 @@ import hashlib
 import json
 from pathlib import Path
 
+import pytest
+
 import mew_bpmn
 import mew_release
 import mew_reporting
@@ -9,7 +11,6 @@ import mew_rules.baseline_rules
 import mew_rules.evaluator
 import mew_rules.model
 import mew_semantic
-import pytest
 
 FIXTURES = Path(__file__).resolve().parents[1] / "fixtures" / "bpmn"
 REFERENCE_SVG = FIXTURES / "reference_process.svg"
