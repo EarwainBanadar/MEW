@@ -62,6 +62,7 @@ line-length = 100
 exclude = ["releases", "examples"]
 
 [tool.ruff.lint]
-# Incremental v0.10.0 quality gate: runtime defects, unused imports,
-# deterministic import sorting and selected Python 3.10 type-hint modernization.
-select = ["E9", "F401", "F63", "F7", "F82", "I", "UP006", "UP035", "UP045"]
+# Incremental v0.10.0 quality gate: runtime defects, import-related pycodestyle
+# errors, unused imports, deterministic import sorting and selected Python 3.10
+# type-hint modernization.
+select = ["E4", "E9", "F401", "F63", "F7", "F82", "I", "UP006", "UP035", "UP045"]
