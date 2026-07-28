@@ -26,7 +26,7 @@ def create_standard_registry():
   r.register(FunctionalRule(d,bound))
  # Governance / identity
  d=D('KB-BPMN-001','Engineering IDs present','Every object requires a non-empty engineering ID.',RuleCategory.GOVERNANCE,RuleSeverity.CRITICAL,RuleScope.REPOSITORY,['identity']); add(d,lambda c:(F(d,'Missing engineering ID') for o in c.repository if not str(o.engineering_id).strip()))
- d=D('KB-BPMN-002','Engineering IDs unique','Engineering IDs must be globally unique.',RuleCategory.STRUCTURAL,RuleSeverity.CRITICAL,RuleScope.REPOSITORY,['identity']);
+ d=D('KB-BPMN-002','Engineering IDs unique','Engineering IDs must be globally unique.',RuleCategory.STRUCTURAL,RuleSeverity.CRITICAL,RuleScope.REPOSITORY,['identity'])
  def e(c):
   ids=[o.engineering_id for o in c.repository]
   for x,n in Counter(ids).items():
@@ -36,7 +36,7 @@ def create_standard_registry():
  d=D('KB-BPMN-004','Version metadata present','Every object requires engineering version metadata.',RuleCategory.GOVERNANCE,RuleSeverity.ERROR,RuleScope.OBJECT,['metadata']); add(d,lambda c:(F(d,'Missing version metadata',o.engineering_id) for o in c.repository if not o.metadata.version))
  d=D('KB-BPMN-005','Recognized BPMN types','Unknown BPMN object types are not releaseable.',RuleCategory.QUALITY,RuleSeverity.ERROR,RuleScope.OBJECT,['typing']); add(d,lambda c:(F(d,'Unknown BPMN type',o.engineering_id,ev={'bpmn_type':o.bpmn_type}) for o in c.repository if o.object_kind==ObjectKind.UNKNOWN))
  # References / flows
- d=D('KB-BPMN-006','Flow endpoints resolve','Every flow source and target must resolve.',RuleCategory.SEMANTIC,RuleSeverity.CRITICAL,RuleScope.FLOW,['flow']);
+ d=D('KB-BPMN-006','Flow endpoints resolve','Every flow source and target must resolve.',RuleCategory.SEMANTIC,RuleSeverity.CRITICAL,RuleScope.FLOW,['flow'])
  def e(c):
   ids={o.engineering_id for o in c.repository}
   for f in c.repository.flows():
@@ -45,13 +45,13 @@ def create_standard_registry():
  add(d,e)
  d=D('KB-BPMN-007','No self-loop sequence flows','Sequence flows should not connect an element to itself.',RuleCategory.QUALITY,RuleSeverity.ERROR,RuleScope.FLOW,['flow']); add(d,lambda c:(F(d,'Self-loop sequence flow',f.engineering_id) for f in c.repository.flows() if f.flow_kind==FlowKind.SEQUENCE and f.source_ref==f.target_ref))
  d=D('KB-BPMN-008','Flow IDs present','Every flow requires an engineering ID.',RuleCategory.GOVERNANCE,RuleSeverity.CRITICAL,RuleScope.FLOW,['flow','identity']); add(d,lambda c:(F(d,'Flow has no ID') for f in c.repository.flows() if not f.engineering_id))
- d=D('KB-BPMN-009','Sequence flows connect flow nodes','Sequence flows must connect BPMN flow nodes.',RuleCategory.SEMANTIC,RuleSeverity.ERROR,RuleScope.FLOW,['flow']);
+ d=D('KB-BPMN-009','Sequence flows connect flow nodes','Sequence flows must connect BPMN flow nodes.',RuleCategory.SEMANTIC,RuleSeverity.ERROR,RuleScope.FLOW,['flow'])
  def e(c):
   ids={n.engineering_id for n in c.repository.flow_nodes()}
   for f in c.repository.flows():
    if f.flow_kind==FlowKind.SEQUENCE and (f.source_ref not in ids or f.target_ref not in ids): yield F(d,'Sequence flow endpoint is not a flow node',f.engineering_id)
  add(d,e)
- d=D('KB-BPMN-010','No duplicate directed sequence edges','Duplicate sequence edges between identical endpoints are prohibited.',RuleCategory.QUALITY,RuleSeverity.WARNING,RuleScope.GRAPH,['flow']);
+ d=D('KB-BPMN-010','No duplicate directed sequence edges','Duplicate sequence edges between identical endpoints are prohibited.',RuleCategory.QUALITY,RuleSeverity.WARNING,RuleScope.GRAPH,['flow'])
  def e(c):
   pairs=defaultdict(list)
   for f in c.repository.flows():
@@ -75,7 +75,7 @@ def create_standard_registry():
  d=D('KB-BPMN-021','Tasks are named','Tasks require a human-readable name.',RuleCategory.GOVERNANCE,RuleSeverity.WARNING,RuleScope.OBJECT,['task','naming']); add(d,lambda c:(F(d,'Unnamed task',n.engineering_id) for n in c.repository.flow_nodes() if isinstance(n,Task) and not (n.name or '').strip()))
  d=D('KB-BPMN-022','Task names are concise','Task names should not exceed 120 characters.',RuleCategory.QUALITY,RuleSeverity.INFO,RuleScope.OBJECT,['task','naming']); add(d,lambda c:(F(d,'Task name exceeds 120 characters',n.engineering_id,ev={'length':len(n.name or '')}) for n in c.repository.flow_nodes() if isinstance(n,Task) and len(n.name or '')>120))
  d=D('KB-BPMN-023','Tasks are connected','Tasks require incoming or outgoing process connectivity.',RuleCategory.SEMANTIC,RuleSeverity.ERROR,RuleScope.OBJECT,['task']); add(d,lambda c:(F(d,'Isolated task',n.engineering_id) for n in c.repository.flow_nodes() if isinstance(n,Task) and not n.incoming and not n.outgoing))
- d=D('KB-BPMN-024','No direct start-to-end trivial process','A process should not consist only of a direct start-to-end flow.',RuleCategory.QUALITY,RuleSeverity.WARNING,RuleScope.GRAPH,['graph']);
+ d=D('KB-BPMN-024','No direct start-to-end trivial process','A process should not consist only of a direct start-to-end flow.',RuleCategory.QUALITY,RuleSeverity.WARNING,RuleScope.GRAPH,['graph'])
  def e(c):
   m={n.engineering_id:n for n in c.repository.flow_nodes()}
   for f in c.repository.flows():
