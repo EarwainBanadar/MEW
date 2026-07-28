@@ -30,6 +30,7 @@ mew-bpmn = "mew_bpmn.cli:main"
 mew-rules = "mew_rules.standard_cli:main"
 mew-report = "mew_reporting.cli:main"
 mew-release = "mew_release.cli:main"
+mew-quality = "mew_quality:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
