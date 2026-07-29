@@ -65,4 +65,4 @@ exclude = ["releases", "examples"]
 # Incremental v0.10.0 quality gate: runtime defects, import-related pycodestyle
 # errors, unnecessary statement terminators, ambiguous names, unused imports,
 # deterministic import sorting and selected Python 3.10 type-hint modernization.
-select = ["E4", "E703", "E741", "E9", "F401", "F63", "F7", "F82", "I", "UP006", "UP035", "UP045"]
+select = ["E4", "E701", "E703", "E741", "E9", "F401", "F63", "F7", "F82", "I", "UP006", "UP035", "UP045"]
