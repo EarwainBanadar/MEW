@@ -72,8 +72,10 @@ class ReleaseBuilder:
         output_root.mkdir(parents=True, exist_ok=True)
         release_dir = output_root / descriptor.release_id
         temp_dir = output_root / (descriptor.release_id + ".tmp")
-        if temp_dir.exists(): shutil.rmtree(temp_dir)
-        if release_dir.exists(): shutil.rmtree(release_dir)
+        if temp_dir.exists():
+            shutil.rmtree(temp_dir)
+        if release_dir.exists():
+            shutil.rmtree(release_dir)
         temp_dir.mkdir(parents=True)
 
         for record in records:
