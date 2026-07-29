@@ -99,7 +99,8 @@ class ReleaseBuilder:
         temp_dir.rename(release_dir)
 
         archive = output_root/(archive_name or f"{descriptor.release_id}.zip")
-        if archive.exists(): archive.unlink()
+        if archive.exists():
+            archive.unlink()
         with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED) as z:
             for path in sorted(release_dir.rglob("*")):
                 if path.is_file():
