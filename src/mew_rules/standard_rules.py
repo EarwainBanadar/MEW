@@ -89,7 +89,8 @@ def create_standard_registry():
   m={n.engineering_id:n for n in c.repository.flow_nodes()}
   for f in c.repository.flows():
    a,b=m.get(f.source_ref),m.get(f.target_ref)
-   if isinstance(a,Event) and a.event_kind==EventKind.START and isinstance(b,Event) and b.event_kind==EventKind.END: yield F(d,'Direct start-to-end sequence detected',f.engineering_id)
+   if isinstance(a,Event) and a.event_kind==EventKind.START and isinstance(b,Event) and b.event_kind==EventKind.END:
+    yield F(d,'Direct start-to-end sequence detected',f.engineering_id)
  add(d,e)
  # Graph
  d=D('KB-BPMN-025','Graph has roots','The sequence-flow graph requires at least one root.',RuleCategory.STRUCTURAL,RuleSeverity.CRITICAL,RuleScope.GRAPH,['graph']); add(d,lambda c:([] if c.repository.graph_analysis().roots else [F(d,'No sequence-flow root detected')]))
