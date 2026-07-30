@@ -6,10 +6,14 @@ from dataclasses import dataclass
 from .model import RuleDefinition
 
 
-class KnowledgeBaseError(RuntimeError): pass
-class DuplicateKnowledgeRule(KnowledgeBaseError): pass
-class InvalidKnowledgeRule(KnowledgeBaseError): pass
-class UnsupportedKnowledgeFormat(KnowledgeBaseError): pass
+class KnowledgeBaseError(RuntimeError):
+ pass
+class DuplicateKnowledgeRule(KnowledgeBaseError):
+ pass
+class InvalidKnowledgeRule(KnowledgeBaseError):
+ pass
+class UnsupportedKnowledgeFormat(KnowledgeBaseError):
+ pass
 def parse_semver(v:str)->tuple[int,int,int]:
  m=re.fullmatch(r"(\d+)\.(\d+)\.(\d+)",v.strip())
  if not m: raise InvalidKnowledgeRule(f"Invalid semantic version: {v}")
