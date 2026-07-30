@@ -57,7 +57,8 @@ def _text(el: etree._Element) -> str | None:
     for node in el.iter():
         if etree.QName(node).localname in ('text','tspan') and node.text:
             t=' '.join(node.text.split())
-            if t and (not values or values[-1] != t): values.append(t)
+            if t and (not values or values[-1] != t):
+                values.append(t)
     return ' '.join(values) if values else None
 
 def _primitive(el: etree._Element, geom: Geometry) -> GraphicPrimitive:
