@@ -47,7 +47,8 @@ class KnowledgeBaseRepository:
   if not vs:
    raise KeyError(f"Unknown rule: {rule_id}")
   return self._records[(rule_id,max(vs,key=parse_semver))]
- def versions(self,rule_id): return sorted([v for r,v in self._records if r==rule_id],key=parse_semver)
+ def versions(self,rule_id):
+  return sorted([v for r,v in self._records if r==rule_id],key=parse_semver)
  def list(self,category=None,severity=None,enabled_only=False,latest_only=False):
   rs=list(self._records.values())
   if latest_only:
