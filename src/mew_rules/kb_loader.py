@@ -46,9 +46,12 @@ def parse_markdown_rule(text):
 class KnowledgeBaseLoader:
  def load_file(self,path:Path):
   s=path.suffix.lower()
-  if s=='.json': d=json.loads(path.read_text(encoding='utf-8')); fmt='json'
-  elif s in ('.md','.markdown'): d=parse_markdown_rule(path.read_text(encoding='utf-8')); fmt='markdown'
-  else: raise UnsupportedKnowledgeFormat(str(path))
+  if s=='.json':
+   d=json.loads(path.read_text(encoding='utf-8')); fmt='json'
+  elif s in ('.md','.markdown'):
+   d=parse_markdown_rule(path.read_text(encoding='utf-8')); fmt='markdown'
+  else:
+   raise UnsupportedKnowledgeFormat(str(path))
   return KnowledgeRuleRecord(definition(d),str(path),fmt,sha(path))
  def load_directory(self,directory:Path,recursive=True):
   repo=KnowledgeBaseRepository(); it=directory.rglob('*') if recursive else directory.glob('*')
