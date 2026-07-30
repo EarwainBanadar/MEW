@@ -28,11 +28,15 @@ class KnowledgeRuleRecord:
  def to_dict(self):
   return {'definition':self.definition.to_dict(),'source_path':self.source_path,'source_format':self.source_format,'source_sha256':self.source_sha256}
 class KnowledgeBaseRepository:
- def __init__(self): self._records:dict[tuple[str,str],KnowledgeRuleRecord]={}
- def __len__(self): return len(self._records)
+ def __init__(self):
+  self._records:dict[tuple[str,str],KnowledgeRuleRecord]={}
+ def __len__(self):
+  return len(self._records)
  def add(self,r):
-  k=(r.definition.rule_id,r.definition.version); parse_semver(k[1])
-  if k in self._records: raise DuplicateKnowledgeRule(f"{k[0]}@{k[1]}")
+  k=(r.definition.rule_id,r.definition.version)
+  parse_semver(k[1])
+  if k in self._records:
+   raise DuplicateKnowledgeRule(f"{k[0]}@{k[1]}")
   self._records[k]=r
  def get(self,rule_id,version:str | None=None):
   if version is not None:
