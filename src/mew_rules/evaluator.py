@@ -51,7 +51,8 @@ class RuleEvaluator:
                 continue
             if d.rule_id in policy.disabled_rule_ids:
                 continue
-            if policy.minimum_severity is not None and rank[d.severity] < rank[policy.minimum_severity]: continue
+            if policy.minimum_severity is not None and rank[d.severity] < rank[policy.minimum_severity]:
+                continue
             out.append(rule)
         return out
     def evaluate(self, context: RuleContext, policy: EvaluationPolicy | None=None) -> EvaluationSummary:
