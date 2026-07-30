@@ -106,7 +106,8 @@ class SemanticSvgParser:
             geometry_cache[key]=g
             return g
 
-        elements=[]; flows=[]
+        elements=[]
+        flows=[]
         engineering_ids=defaultdict(list)
         for el in root.iter():
             if not isinstance(el.tag,str): continue
