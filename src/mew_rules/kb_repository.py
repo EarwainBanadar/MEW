@@ -21,8 +21,12 @@ def parse_semver(v:str)->tuple[int,int,int]:
  return tuple(map(int,m.groups()))
 @dataclass(frozen=True)
 class KnowledgeRuleRecord:
- definition:RuleDefinition; source_path:str; source_format:str; source_sha256:str
- def to_dict(self): return {'definition':self.definition.to_dict(),'source_path':self.source_path,'source_format':self.source_format,'source_sha256':self.source_sha256}
+ definition:RuleDefinition
+ source_path:str
+ source_format:str
+ source_sha256:str
+ def to_dict(self):
+  return {'definition':self.definition.to_dict(),'source_path':self.source_path,'source_format':self.source_format,'source_sha256':self.source_sha256}
 class KnowledgeBaseRepository:
  def __init__(self): self._records:dict[tuple[str,str],KnowledgeRuleRecord]={}
  def __len__(self): return len(self._records)
