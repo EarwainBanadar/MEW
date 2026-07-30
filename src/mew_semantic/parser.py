@@ -23,7 +23,8 @@ SEMANTIC_ATTRS={"data-bpmn-type","data-element-id","data-flow-type","data-source
 def _sha256(path: Path) -> str:
     h=hashlib.sha256()
     with path.open('rb') as f:
-        for chunk in iter(lambda:f.read(1024*1024),b''): h.update(chunk)
+        for chunk in iter(lambda:f.read(1024*1024),b''):
+            h.update(chunk)
     return h.hexdigest()
 
 def _local_attrs(el: etree._Element) -> dict[str,str]:
