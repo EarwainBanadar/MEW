@@ -42,9 +42,11 @@ def _style(el: etree._Element) -> dict[str,str]:
     if el.get('style'):
         for item in el.get('style').split(';'):
             if ':' in item:
-                k,v=item.split(':',1); result[k.strip()]=v.strip()
+                k,v=item.split(':',1)
+                result[k.strip()]=v.strip()
     for k in STYLE_KEYS:
-        if el.get(k) is not None: result[k]=el.get(k)
+        if el.get(k) is not None:
+            result[k]=el.get(k)
     return result
 
 def _metadata(el: etree._Element) -> dict[str,str]:
