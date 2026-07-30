@@ -16,7 +16,8 @@ class UnsupportedKnowledgeFormat(KnowledgeBaseError):
  pass
 def parse_semver(v:str)->tuple[int,int,int]:
  m=re.fullmatch(r"(\d+)\.(\d+)\.(\d+)",v.strip())
- if not m: raise InvalidKnowledgeRule(f"Invalid semantic version: {v}")
+ if not m:
+  raise InvalidKnowledgeRule(f"Invalid semantic version: {v}")
  return tuple(map(int,m.groups()))
 @dataclass(frozen=True)
 class KnowledgeRuleRecord:
