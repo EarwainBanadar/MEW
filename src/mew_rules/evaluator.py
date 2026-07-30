@@ -63,7 +63,8 @@ class RuleEvaluator:
             result=rule.execute(context); results.append(result)
             if policy.stop_on_critical and any(f.severity==RuleSeverity.CRITICAL for f in result.findings):
                 break
-            if policy.fail_on_rule_error and result.status==RuleStatus.ERROR: break
+            if policy.fail_on_rule_error and result.status==RuleStatus.ERROR:
+                break
         errors=any(r.status==RuleStatus.ERROR for r in results)
         critical=any(f.severity==RuleSeverity.CRITICAL for r in results for f in r.findings)
         error_findings=any(f.severity==RuleSeverity.ERROR for r in results for f in r.findings)
