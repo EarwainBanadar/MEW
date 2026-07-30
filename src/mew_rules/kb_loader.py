@@ -54,6 +54,8 @@ class KnowledgeBaseLoader:
    raise UnsupportedKnowledgeFormat(str(path))
   return KnowledgeRuleRecord(definition(d),str(path),fmt,sha(path))
  def load_directory(self,directory:Path,recursive=True):
-  repo=KnowledgeBaseRepository(); it=directory.rglob('*') if recursive else directory.glob('*')
-  for p in sorted([p for p in it if p.is_file() and p.suffix.lower() in ('.json','.md','.markdown')],key=str): repo.add(self.load_file(p))
+  repo=KnowledgeBaseRepository()
+  it=directory.rglob('*') if recursive else directory.glob('*')
+  for p in sorted([p for p in it if p.is_file() and p.suffix.lower() in ('.json','.md','.markdown')],key=str):
+   repo.add(self.load_file(p))
   return repo
