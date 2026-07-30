@@ -20,4 +20,5 @@ def main():
  a.output.write_text(json.dumps(res.to_dict(),indent=2,ensure_ascii=False),encoding='utf-8')
  print(json.dumps({'rules':res.selected_rule_count,'findings':res.finding_count,'errors':res.error_count,'status':res.overall_status},indent=2))
  return 0 if res.error_count==0 else 2
-if __name__=='__main__': raise SystemExit(main())
+if __name__=='__main__':
+ raise SystemExit(main())
