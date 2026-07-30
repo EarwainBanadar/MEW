@@ -118,7 +118,9 @@ class ReleaseBuilder:
         failures=[]
         for item in manifest.get("artifacts",[]):
             path=release_directory/"artifacts"/item["logical_path"]
-            if not path.exists(): failures.append({"path":item["logical_path"],"reason":"missing"}); continue
+            if not path.exists():
+                failures.append({"path":item["logical_path"],"reason":"missing"})
+                continue
             if path.stat().st_size != item["size"]: failures.append({"path":item["logical_path"],"reason":"size"})
             elif sha256_file(path) != item["sha256"]: failures.append({"path":item["logical_path"],"reason":"sha256"})
         return {"status":"PASS" if not failures else "FAIL","checked":len(manifest.get("artifacts",[])),"failures":failures}
