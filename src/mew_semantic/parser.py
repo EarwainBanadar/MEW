@@ -30,8 +30,10 @@ def _sha256(path: Path) -> str:
 def _local_attrs(el: etree._Element) -> dict[str,str]:
     out={}
     for k,v in el.attrib.items():
-        try: key=etree.QName(k).localname
-        except ValueError: key=k
+        try:
+            key=etree.QName(k).localname
+        except ValueError:
+            key=k
         out[key]=v
     return out
 
