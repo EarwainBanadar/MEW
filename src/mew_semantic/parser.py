@@ -141,7 +141,8 @@ class SemanticSvgParser:
                         primitives.append(_primitive(ch,geom(ch)))
                 txt=_text(el)
                 element=SemanticElement(eid,el.get('id'),bpmn_type,txt,txt,geom(el),_style(el),_metadata(el),primitives,xpath,el.getparent().get('id') if el.getparent() is not None else None)
-                elements.append(element); engineering_ids[eid].append(('element',xpath))
+                elements.append(element)
+                engineering_ids[eid].append(('element',xpath))
 
         for eid,occ in engineering_ids.items():
             if len(occ)>1:
