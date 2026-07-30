@@ -158,7 +158,8 @@ class SemanticSvgParser:
         incoming=Counter()
         outgoing=Counter()
         for fl in flows:
-            outgoing[fl.source_ref]+=1; incoming[fl.target_ref]+=1
+            outgoing[fl.source_ref]+=1
+            incoming[fl.target_ref]+=1
         index={}
         for e in elements:
             index[e.engineering_id]={"kind":"element","type":e.bpmn_type,"incoming":incoming[e.engineering_id],"outgoing":outgoing[e.engineering_id]}
