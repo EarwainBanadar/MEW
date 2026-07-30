@@ -17,4 +17,5 @@ def main():
  a.output.parent.mkdir(parents=True,exist_ok=True);a.output.write_text(json.dumps(result.to_dict(),indent=2,ensure_ascii=False),encoding='utf-8')
  print(json.dumps({'overall_status':result.overall_status,'selected_rules':result.selected_rule_count,'findings':result.finding_count,'errors':result.error_count},indent=2))
  return 0 if result.overall_status in ('PASS','WARNING') else 2
-if __name__=='__main__': raise SystemExit(main())
+if __name__=='__main__':
+ raise SystemExit(main())
