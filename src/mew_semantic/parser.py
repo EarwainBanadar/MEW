@@ -99,7 +99,8 @@ class SemanticSvgParser:
         geometry_cache={}
         def geom(e):
             key=id(e)
-            if key in geometry_cache: return geometry_cache[key]
+            if key in geometry_cache:
+                return geometry_cache[key]
             child_boxes=[geom(c).bbox for c in e if isinstance(c.tag,str)]
             g=geometry_for(e,child_boxes)
             geometry_cache[key]=g
