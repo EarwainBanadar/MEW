@@ -112,7 +112,8 @@ class ReleaseBuilder:
 
     def verify(self, release_directory: Path) -> dict[str, object]:
         manifest_path=release_directory/MANIFEST_NAME
-        if not manifest_path.exists(): raise ReleaseError("Release manifest missing")
+        if not manifest_path.exists():
+            raise ReleaseError("Release manifest missing")
         manifest=json.loads(manifest_path.read_text(encoding="utf-8"))
         failures=[]
         for item in manifest.get("artifacts",[]):
