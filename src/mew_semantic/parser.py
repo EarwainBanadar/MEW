@@ -90,7 +90,8 @@ class SemanticSvgParser:
         # XML/SVG ID inventory
         id_nodes=defaultdict(list)
         for e in root.iter():
-            if e.get('id'): id_nodes[e.get('id')].append(e)
+            if e.get('id'):
+                id_nodes[e.get('id')].append(e)
         for id_,nodes in id_nodes.items():
             if len(nodes)>1:
                 diagnostics.append(Diagnostic('SEM-ID-001','ERROR',f'Duplicate SVG id: {id_}',id_,tree.getpath(nodes[0])))
