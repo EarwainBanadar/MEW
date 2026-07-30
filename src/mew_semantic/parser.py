@@ -117,7 +117,8 @@ class SemanticSvgParser:
             xpath=tree.getpath(el)
             if flow_type:
                 eid=el.get('data-element-id') or el.get('id')
-                src=el.get('data-source-ref'); tgt=el.get('data-target-ref')
+                src=el.get('data-source-ref')
+                tgt=el.get('data-target-ref')
                 if not eid:
                     diagnostics.append(Diagnostic('SEM-FLOW-001','ERROR','Flow has no engineering or SVG id',None,xpath)); continue
                 if not src or not tgt:
