@@ -26,17 +26,22 @@ def definition(d:dict[str,Any]):
   raise InvalidKnowledgeRule(str(e)) from e
 def parse_markdown_rule(text):
  m=re.match(r'\A---\s*\n(.*?)\n---(?:\s*\n|\Z)',text,re.S)
- if not m: raise InvalidKnowledgeRule('Markdown rule requires YAML-like front matter')
+ if not m:
+  raise InvalidKnowledgeRule('Markdown rule requires YAML-like front matter')
  d={}
  for raw in m.group(1).splitlines():
   line=raw.strip()
-  if not line or line.startswith('#'): continue
-  if ':' not in line: raise InvalidKnowledgeRule(f'Invalid metadata line: {raw}')
+  if not line or line.startswith('#'):
+   continue
+  if ':' not in line:
+   raise InvalidKnowledgeRule(f'Invalid metadata line: {raw}')
   k,v=map(str.strip,line.split(':',1))
-  if v.lower() in ('true','false'): d[k]=v.lower()=='true'
+  if v.lower() in ('true','false'):
+   d[k]=v.lower()=='true'
   elif v.startswith('[') and v.endswith(']'):
    x=v[1:-1].strip(); d[k]=[] if not x else [i.strip() for i in x.split(',')]
-  else:d[k]=v
+  else:
+   d[k]=v
  return d
 class KnowledgeBaseLoader:
  def load_file(self,path:Path):
