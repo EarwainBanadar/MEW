@@ -110,7 +110,8 @@ class SemanticSvgParser:
         flows=[]
         engineering_ids=defaultdict(list)
         for el in root.iter():
-            if not isinstance(el.tag,str): continue
+            if not isinstance(el.tag,str):
+                continue
             bpmn_type=el.get('data-bpmn-type')
             flow_type=el.get('data-flow-type')
             xpath=tree.getpath(el)
