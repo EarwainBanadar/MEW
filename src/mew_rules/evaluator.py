@@ -47,7 +47,8 @@ class RuleEvaluator:
             d=rule.definition
             if not d.enabled_by_default:
                 continue
-            if policy.enabled_rule_ids is not None and d.rule_id not in policy.enabled_rule_ids: continue
+            if policy.enabled_rule_ids is not None and d.rule_id not in policy.enabled_rule_ids:
+                continue
             if d.rule_id in policy.disabled_rule_ids: continue
             if policy.minimum_severity is not None and rank[d.severity] < rank[policy.minimum_severity]: continue
             out.append(rule)
