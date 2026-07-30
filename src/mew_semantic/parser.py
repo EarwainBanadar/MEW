@@ -120,7 +120,8 @@ class SemanticSvgParser:
                 src=el.get('data-source-ref')
                 tgt=el.get('data-target-ref')
                 if not eid:
-                    diagnostics.append(Diagnostic('SEM-FLOW-001','ERROR','Flow has no engineering or SVG id',None,xpath)); continue
+                    diagnostics.append(Diagnostic('SEM-FLOW-001','ERROR','Flow has no engineering or SVG id',None,xpath))
+                    continue
                 if not src or not tgt:
                     diagnostics.append(Diagnostic('SEM-FLOW-002','ERROR','Flow lacks source or target reference',eid,xpath))
                 flow=SemanticFlow(eid,el.get('id'),flow_type,src or '',tgt or '',_text(el),geom(el),_style(el),_metadata(el),xpath)
