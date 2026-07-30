@@ -155,7 +155,8 @@ class SemanticSvgParser:
             if fl.target_ref not in element_index:
                 diagnostics.append(Diagnostic('SEM-REF-002','ERROR',f'Unresolved target reference {fl.target_ref}',fl.engineering_id,fl.source_xpath))
 
-        incoming=Counter(); outgoing=Counter()
+        incoming=Counter()
+        outgoing=Counter()
         for fl in flows:
             outgoing[fl.source_ref]+=1; incoming[fl.target_ref]+=1
         index={}
