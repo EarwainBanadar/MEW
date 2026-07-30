@@ -134,7 +134,8 @@ class SemanticSvgParser:
                     continue
                 primitives=[]
                 for ch in el.iterdescendants():
-                    if not isinstance(ch.tag,str): continue
+                    if not isinstance(ch.tag,str):
+                        continue
                     tag=etree.QName(ch).localname
                     if tag in {'rect','circle','ellipse','path','polygon','polyline','line','text'}:
                         primitives.append(_primitive(ch,geom(ch)))
