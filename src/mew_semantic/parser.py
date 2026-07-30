@@ -130,7 +130,8 @@ class SemanticSvgParser:
             elif bpmn_type:
                 eid=el.get('data-element-id') or el.get('id')
                 if not eid:
-                    diagnostics.append(Diagnostic('SEM-ELEM-001','ERROR','Semantic element has no engineering or SVG id',None,xpath)); continue
+                    diagnostics.append(Diagnostic('SEM-ELEM-001','ERROR','Semantic element has no engineering or SVG id',None,xpath))
+                    continue
                 primitives=[]
                 for ch in el.iterdescendants():
                     if not isinstance(ch.tag,str): continue
