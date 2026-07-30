@@ -40,10 +40,12 @@ class KnowledgeBaseRepository:
   self._records[k]=r
  def get(self,rule_id,version:str | None=None):
   if version is not None:
-   if (rule_id,version) not in self._records: raise KeyError(f"Unknown rule version: {rule_id}@{version}")
+   if (rule_id,version) not in self._records:
+    raise KeyError(f"Unknown rule version: {rule_id}@{version}")
    return self._records[(rule_id,version)]
   vs=[v for r,v in self._records if r==rule_id]
-  if not vs: raise KeyError(f"Unknown rule: {rule_id}")
+  if not vs:
+   raise KeyError(f"Unknown rule: {rule_id}")
   return self._records[(rule_id,max(vs,key=parse_semver))]
  def versions(self,rule_id): return sorted([v for r,v in self._records if r==rule_id],key=parse_semver)
  def list(self,category=None,severity=None,enabled_only=False,latest_only=False):
