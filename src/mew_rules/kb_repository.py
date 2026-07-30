@@ -66,4 +66,5 @@ class KnowledgeBaseRepository:
    rs=[r for r in rs if r.definition.enabled_by_default]
   return sorted(rs,key=lambda r:(r.definition.rule_id,parse_semver(r.definition.version)))
  def manifest(self,latest_only=False):
-  rs=self.list(latest_only=latest_only); return {'rule_count':len(rs),'latest_only':latest_only,'rules':[r.to_dict() for r in rs]}
+  rs=self.list(latest_only=latest_only)
+  return {'rule_count':len(rs),'latest_only':latest_only,'rules':[r.to_dict() for r in rs]}
