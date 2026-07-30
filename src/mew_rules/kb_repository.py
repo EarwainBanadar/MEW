@@ -55,7 +55,8 @@ class KnowledgeBaseRepository:
    d={}
    for r in rs:
     rid=r.definition.rule_id
-    if rid not in d or parse_semver(r.definition.version)>parse_semver(d[rid].definition.version): d[rid]=r
+    if rid not in d or parse_semver(r.definition.version)>parse_semver(d[rid].definition.version):
+     d[rid]=r
    rs=list(d.values())
   if category is not None: rs=[r for r in rs if r.definition.category==category]
   if severity is not None: rs=[r for r in rs if r.definition.severity==severity]
