@@ -58,9 +58,12 @@ class KnowledgeBaseRepository:
     if rid not in d or parse_semver(r.definition.version)>parse_semver(d[rid].definition.version):
      d[rid]=r
    rs=list(d.values())
-  if category is not None: rs=[r for r in rs if r.definition.category==category]
-  if severity is not None: rs=[r for r in rs if r.definition.severity==severity]
-  if enabled_only: rs=[r for r in rs if r.definition.enabled_by_default]
+  if category is not None:
+   rs=[r for r in rs if r.definition.category==category]
+  if severity is not None:
+   rs=[r for r in rs if r.definition.severity==severity]
+  if enabled_only:
+   rs=[r for r in rs if r.definition.enabled_by_default]
   return sorted(rs,key=lambda r:(r.definition.rule_id,parse_semver(r.definition.version)))
  def manifest(self,latest_only=False):
   rs=self.list(latest_only=latest_only); return {'rule_count':len(rs),'latest_only':latest_only,'rules':[r.to_dict() for r in rs]}
