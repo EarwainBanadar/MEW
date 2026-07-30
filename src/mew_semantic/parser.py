@@ -167,7 +167,9 @@ class SemanticSvgParser:
             index[f.engineering_id]={"kind":"flow","type":f.flow_type,"source":f.source_ref,"target":f.target_ref}
 
         doc_meta={k:v for k,v in _local_attrs(root).items() if k.startswith('data-')}
-        doc_meta.update({"title":next((x.text for x in root if etree.QName(x).localname=='title'),None),"description":next((x.text for x in root if etree.QName(x).localname=='desc'),None)})
+        title=next((x.text for x in root if etree.QName(x).localname=='title'),None)
+        description=next((x.text for x in root if etree.QName(x).localname=='desc'),None)
+        doc_meta.update({"title":title,"description":description})
         type_counts=Counter(e.bpmn_type for e in elements)
         flow_counts=Counter(f.flow_type for f in flows)
         severity=Counter(d.severity for d in diagnostics)
