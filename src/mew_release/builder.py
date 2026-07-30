@@ -123,5 +123,6 @@ class ReleaseBuilder:
                 continue
             if path.stat().st_size != item["size"]:
                 failures.append({"path":item["logical_path"],"reason":"size"})
-            elif sha256_file(path) != item["sha256"]: failures.append({"path":item["logical_path"],"reason":"sha256"})
+            elif sha256_file(path) != item["sha256"]:
+                failures.append({"path":item["logical_path"],"reason":"sha256"})
         return {"status":"PASS" if not failures else "FAIL","checked":len(manifest.get("artifacts",[])),"failures":failures}
