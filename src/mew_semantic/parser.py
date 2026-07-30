@@ -125,7 +125,8 @@ class SemanticSvgParser:
                 if not src or not tgt:
                     diagnostics.append(Diagnostic('SEM-FLOW-002','ERROR','Flow lacks source or target reference',eid,xpath))
                 flow=SemanticFlow(eid,el.get('id'),flow_type,src or '',tgt or '',_text(el),geom(el),_style(el),_metadata(el),xpath)
-                flows.append(flow); engineering_ids[eid].append(('flow',xpath))
+                flows.append(flow)
+                engineering_ids[eid].append(('flow',xpath))
             elif bpmn_type:
                 eid=el.get('data-element-id') or el.get('id')
                 if not eid:
