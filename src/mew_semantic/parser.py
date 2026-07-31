@@ -162,7 +162,12 @@ class SemanticSvgParser:
             incoming[fl.target_ref]+=1
         index={}
         for e in elements:
-            index[e.engineering_id]={"kind":"element","type":e.bpmn_type,"incoming":incoming[e.engineering_id],"outgoing":outgoing[e.engineering_id]}
+            index[e.engineering_id]={
+                "kind":"element",
+                "type":e.bpmn_type,
+                "incoming":incoming[e.engineering_id],
+                "outgoing":outgoing[e.engineering_id],
+            }
         for f in flows:
             index[f.engineering_id]={"kind":"flow","type":f.flow_type,"source":f.source_ref,"target":f.target_ref}
 
