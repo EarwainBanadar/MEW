@@ -9,6 +9,7 @@ class Point:
     x: float
     y: float
 
+
 @dataclass(frozen=True)
 class Geometry:
     x: float | None = None
@@ -23,6 +24,7 @@ class Geometry:
     path_data: str | None = None
     points: list[Point] = field(default_factory=list)
 
+
 @dataclass(frozen=True)
 class GraphicPrimitive:
     svg_id: str | None
@@ -30,6 +32,7 @@ class GraphicPrimitive:
     geometry: Geometry
     style: dict[str, str]
     attributes: dict[str, str]
+
 
 @dataclass(frozen=True)
 class SemanticElement:
@@ -44,6 +47,9 @@ class SemanticElement:
     primitives: list[GraphicPrimitive]
     source_xpath: str
     parent_svg_id: str | None = None
+    parent_ref: str | None = None
+    scope_ref: str | None = None
+
 
 @dataclass(frozen=True)
 class SemanticFlow:
@@ -57,6 +63,25 @@ class SemanticFlow:
     style: dict[str, str]
     metadata: dict[str, str]
     source_xpath: str
+    scope_ref: str | None = None
+
+
+@dataclass(frozen=True)
+class SemanticReference:
+    source_ref: str
+    attribute: str
+    target_ref: str
+    resolved: bool
+    source_xpath: str
+
+
+@dataclass(frozen=True)
+class SemanticScope:
+    scope_ref: str
+    scope_type: str
+    parent_scope_ref: str | None
+    member_refs: list[str]
+
 
 @dataclass(frozen=True)
 class Diagnostic:
@@ -65,6 +90,7 @@ class Diagnostic:
     message: str
     element_id: str | None = None
     xpath: str | None = None
+
 
 @dataclass
 class SemanticDocument:
@@ -76,6 +102,8 @@ class SemanticDocument:
     diagnostics: list[Diagnostic]
     index: dict[str, dict[str, Any]]
     statistics: dict[str, Any]
+    scopes: dict[str, SemanticScope] = field(default_factory=dict)
+    references: list[SemanticReference] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
