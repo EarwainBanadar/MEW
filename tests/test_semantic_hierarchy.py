@@ -1,6 +1,3 @@
-from mew_semantic import parse_svg
-
-
 SVG = """<svg xmlns="http://www.w3.org/2000/svg">
   <g id="process-svg" data-element-id="process-1" data-bpmn-type="process">
     <g id="task-a-svg" data-element-id="task-a" data-bpmn-type="task"
@@ -25,14 +22,16 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg">
 """
 
 
-def _write_svg(tmp_path):
+def _parse(tmp_path):
+    from mew_semantic import parse_svg
+
     path = tmp_path / "hierarchy.svg"
     path.write_text(SVG, encoding="utf-8")
-    return path
+    return parse_svg(path)
 
 
 def test_resolves_parent_and_scope_hierarchy(tmp_path):
-    document = parse_svg(_write_svg(tmp_path))
+    document = _parse(tmp_path)
 
     assert document.schema_version == "0.2.0"
     assert document.index["task-a"]["parent"] == "process-1"
@@ -48,7 +47,7 @@ def test_resolves_parent_and_scope_hierarchy(tmp_path):
 
 
 def test_builds_deterministic_scope_membership(tmp_path):
-    document = parse_svg(_write_svg(tmp_path))
+    document = _parse(tmp_path)
 
     assert set(document.scopes) == {"process-1", "sub-1"}
     assert document.scopes["sub-1"].parent_scope_ref == "process-1"
@@ -57,7 +56,7 @@ def test_builds_deterministic_scope_membership(tmp_path):
 
 
 def test_resolves_declared_and_flow_references(tmp_path):
-    document = parse_svg(_write_svg(tmp_path))
+    document = _parse(tmp_path)
 
     references = {
         (reference.source_ref, reference.attribute, reference.target_ref): reference.resolved
