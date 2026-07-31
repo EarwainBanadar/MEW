@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from pathlib import Path
 
 from mew_semantic import parse_svg
