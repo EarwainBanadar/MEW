@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import mew_semantic
+mew_semantic = __import__("mew_semantic")
 
 
 SVG = """<svg xmlns="http://www.w3.org/2000/svg">
