@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from collections import deque
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
 
 from .model import SemanticDocument
 
@@ -102,6 +102,7 @@ class SemanticGraph:
 def build_model_graph(document: SemanticDocument) -> SemanticGraph:
     nodes = sorted(document.index)
     edges: set[GraphEdge] = set()
+    flow_refs = {flow.engineering_id for flow in document.flows}
 
     for element in document.elements:
         if element.parent_ref:
@@ -119,7 +120,7 @@ def build_model_graph(document: SemanticDocument) -> SemanticGraph:
             )
 
     for reference in document.references:
-        if reference.resolved:
+        if reference.resolved and reference.source_ref not in flow_refs:
             edges.add(
                 GraphEdge(
                     reference.source_ref,
