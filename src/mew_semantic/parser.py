@@ -63,7 +63,13 @@ def _text(el: etree._Element) -> str | None:
 
 def _primitive(el: etree._Element, geom: Geometry) -> GraphicPrimitive:
     attrs=_local_attrs(el)
-    return GraphicPrimitive(svg_id=el.get('id'),tag=etree.QName(el).localname,geometry=geom,style=_style(el),attributes=attrs)
+    return GraphicPrimitive(
+        svg_id=el.get('id'),
+        tag=etree.QName(el).localname,
+        geometry=geom,
+        style=_style(el),
+        attributes=attrs,
+    )
 
 class SemanticSvgParser:
     """Parse semantically annotated BPMN-like SVG into a stable neutral document.
@@ -94,7 +100,15 @@ class SemanticSvgParser:
                 id_nodes[e.get('id')].append(e)
         for id_,nodes in id_nodes.items():
             if len(nodes)>1:
-                diagnostics.append(Diagnostic('SEM-ID-001','ERROR',f'Duplicate SVG id: {id_}',id_,tree.getpath(nodes[0])))
+                diagnostics.append(
+                    Diagnostic(
+                        'SEM-ID-001',
+                        'ERROR',
+                        f'Duplicate SVG id: {id_}',
+                        id_,
+                        tree.getpath(nodes[0]),
+                    )
+                )
 
         geometry_cache={}
         def geom(e):
@@ -120,17 +134,52 @@ class SemanticSvgParser:
                 src=el.get('data-source-ref')
                 tgt=el.get('data-target-ref')
                 if not eid:
-                    diagnostics.append(Diagnostic('SEM-FLOW-001','ERROR','Flow has no engineering or SVG id',None,xpath))
+                    diagnostics.append(
+                        Diagnostic(
+                            'SEM-FLOW-001',
+                            'ERROR',
+                            'Flow has no engineering or SVG id',
+                            None,
+                            xpath,
+                        )
+                    )
                     continue
                 if not src or not tgt:
-                    diagnostics.append(Diagnostic('SEM-FLOW-002','ERROR','Flow lacks source or target reference',eid,xpath))
-                flow=SemanticFlow(eid,el.get('id'),flow_type,src or '',tgt or '',_text(el),geom(el),_style(el),_metadata(el),xpath)
+                    diagnostics.append(
+                        Diagnostic(
+                            'SEM-FLOW-002',
+                            'ERROR',
+                            'Flow lacks source or target reference',
+                            eid,
+                            xpath,
+                        )
+                    )
+                flow=SemanticFlow(
+                    eid,
+                    el.get('id'),
+                    flow_type,
+                    src or '',
+                    tgt or '',
+                    _text(el),
+                    geom(el),
+                    _style(el),
+                    _metadata(el),
+                    xpath,
+                )
                 flows.append(flow)
                 engineering_ids[eid].append(('flow',xpath))
             elif bpmn_type:
                 eid=el.get('data-element-id') or el.get('id')
                 if not eid:
-                    diagnostics.append(Diagnostic('SEM-ELEM-001','ERROR','Semantic element has no engineering or SVG id',None,xpath))
+                    diagnostics.append(
+                        Diagnostic(
+                            'SEM-ELEM-001',
+                            'ERROR',
+                            'Semantic element has no engineering or SVG id',
+                            None,
+                            xpath,
+                        )
+                    )
                     continue
                 primitives=[]
                 for ch in el.iterdescendants():
@@ -140,20 +189,61 @@ class SemanticSvgParser:
                     if tag in {'rect','circle','ellipse','path','polygon','polyline','line','text'}:
                         primitives.append(_primitive(ch,geom(ch)))
                 txt=_text(el)
-                element=SemanticElement(eid,el.get('id'),bpmn_type,txt,txt,geom(el),_style(el),_metadata(el),primitives,xpath,el.getparent().get('id') if el.getparent() is not None else None)
+                parent_id=(
+                    el.getparent().get('id')
+                    if el.getparent() is not None
+                    else None
+                )
+                element=SemanticElement(
+                    eid,
+                    el.get('id'),
+                    bpmn_type,
+                    txt,
+                    txt,
+                    geom(el),
+                    _style(el),
+                    _metadata(el),
+                    primitives,
+                    xpath,
+                    parent_id,
+                )
                 elements.append(element)
                 engineering_ids[eid].append(('element',xpath))
 
         for eid,occ in engineering_ids.items():
             if len(occ)>1:
-                diagnostics.append(Diagnostic('SEM-ID-002','ERROR',f'Duplicate engineering id: {eid}',eid,occ[0][1]))
+                diagnostics.append(
+                    Diagnostic(
+                        'SEM-ID-002',
+                        'ERROR',
+                        f'Duplicate engineering id: {eid}',
+                        eid,
+                        occ[0][1],
+                    )
+                )
 
         element_index={e.engineering_id:e for e in elements}
         for fl in flows:
             if fl.source_ref not in element_index:
-                diagnostics.append(Diagnostic('SEM-REF-001','ERROR',f'Unresolved source reference {fl.source_ref}',fl.engineering_id,fl.source_xpath))
+                diagnostics.append(
+                    Diagnostic(
+                        'SEM-REF-001',
+                        'ERROR',
+                        f'Unresolved source reference {fl.source_ref}',
+                        fl.engineering_id,
+                        fl.source_xpath,
+                    )
+                )
             if fl.target_ref not in element_index:
-                diagnostics.append(Diagnostic('SEM-REF-002','ERROR',f'Unresolved target reference {fl.target_ref}',fl.engineering_id,fl.source_xpath))
+                diagnostics.append(
+                    Diagnostic(
+                        'SEM-REF-002',
+                        'ERROR',
+                        f'Unresolved target reference {fl.target_ref}',
+                        fl.engineering_id,
+                        fl.source_xpath,
+                    )
+                )
 
         incoming=Counter()
         outgoing=Counter()
