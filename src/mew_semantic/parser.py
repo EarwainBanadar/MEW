@@ -173,7 +173,15 @@ class SemanticSvgParser:
         type_counts=Counter(e.bpmn_type for e in elements)
         flow_counts=Counter(f.flow_type for f in flows)
         severity=Counter(d.severity for d in diagnostics)
-        stats={"semanticElementCount":len(elements),"flowCount":len(flows),"elementTypes":dict(sorted(type_counts.items())),"flowTypes":dict(sorted(flow_counts.items())),"diagnostics":dict(sorted(severity.items())),"svgNodeCount":sum(1 for _ in root.iter()),"svgIdCount":len(id_nodes)}
+        stats={
+            "semanticElementCount":len(elements),
+            "flowCount":len(flows),
+            "elementTypes":dict(sorted(type_counts.items())),
+            "flowTypes":dict(sorted(flow_counts.items())),
+            "diagnostics":dict(sorted(severity.items())),
+            "svgNodeCount":sum(1 for _ in root.iter()),
+            "svgIdCount":len(id_nodes),
+        }
         doc=SemanticDocument(SCHEMA_VERSION,{"path":str(path),"filename":path.name,"sha256":_sha256(path),"size":path.stat().st_size},doc_meta,elements,flows,diagnostics,index,stats)
         if self.strict and any(d.severity=='ERROR' for d in diagnostics):
             raise ValueError(f'Semantic parsing failed with {severity["ERROR"]} error(s)')
