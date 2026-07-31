@@ -1,4 +1,4 @@
-"""Stable public API for semantic SVG parsing and graph analysis."""
+"""Stable public API for semantic SVG parsing, graph analysis, and quality gates."""
 
 from .graph import GraphEdge, SemanticGraph, build_dependency_graph, build_model_graph
 from .model import (
@@ -10,12 +10,32 @@ from .model import (
     SemanticScope,
 )
 from .parser import SemanticSvgParser, parse_svg
+from .quality import (
+    CrossScopeFlowRule,
+    EngineeringQualityValidator,
+    MissingNameRule,
+    OrphanElementRule,
+    QualityFinding,
+    QualityProfile,
+    QualityResult,
+    QualitySeverity,
+    UnresolvedReferenceRule,
+    validate_quality,
+)
 from .query import ImpactResult, SemanticQueryService
 
 __all__ = [
+    "CrossScopeFlowRule",
     "Diagnostic",
+    "EngineeringQualityValidator",
     "GraphEdge",
     "ImpactResult",
+    "MissingNameRule",
+    "OrphanElementRule",
+    "QualityFinding",
+    "QualityProfile",
+    "QualityResult",
+    "QualitySeverity",
     "SemanticDocument",
     "SemanticElement",
     "SemanticFlow",
@@ -24,7 +44,9 @@ __all__ = [
     "SemanticReference",
     "SemanticScope",
     "SemanticSvgParser",
+    "UnresolvedReferenceRule",
     "build_dependency_graph",
     "build_model_graph",
     "parse_svg",
+    "validate_quality",
 ]
