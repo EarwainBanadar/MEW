@@ -169,7 +169,12 @@ class SemanticSvgParser:
                 "outgoing":outgoing[e.engineering_id],
             }
         for f in flows:
-            index[f.engineering_id]={"kind":"flow","type":f.flow_type,"source":f.source_ref,"target":f.target_ref}
+            index[f.engineering_id]={
+                "kind":"flow",
+                "type":f.flow_type,
+                "source":f.source_ref,
+                "target":f.target_ref,
+            }
 
         doc_meta={k:v for k,v in _local_attrs(root).items() if k.startswith('data-')}
         title=next((x.text for x in root if etree.QName(x).localname=='title'),None)
