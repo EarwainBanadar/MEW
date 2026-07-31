@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
 
 from .graph import SemanticGraph, build_dependency_graph, build_model_graph
 from .model import SemanticDocument
