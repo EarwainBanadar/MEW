@@ -182,7 +182,22 @@ class SemanticSvgParser:
             "svgNodeCount":sum(1 for _ in root.iter()),
             "svgIdCount":len(id_nodes),
         }
-        doc=SemanticDocument(SCHEMA_VERSION,{"path":str(path),"filename":path.name,"sha256":_sha256(path),"size":path.stat().st_size},doc_meta,elements,flows,diagnostics,index,stats)
+        source_meta={
+            "path":str(path),
+            "filename":path.name,
+            "sha256":_sha256(path),
+            "size":path.stat().st_size,
+        }
+        doc=SemanticDocument(
+            SCHEMA_VERSION,
+            source_meta,
+            doc_meta,
+            elements,
+            flows,
+            diagnostics,
+            index,
+            stats,
+        )
         if self.strict and any(d.severity=='ERROR' for d in diagnostics):
             raise ValueError(f'Semantic parsing failed with {severity["ERROR"]} error(s)')
         return doc
