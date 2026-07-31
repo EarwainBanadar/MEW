@@ -1,8 +1,4 @@
-from mew_semantic import (
-    build_dependency_graph,
-    parse_svg,
-    SemanticQueryService,
-)
+import mew_semantic
 
 
 SVG = """<svg xmlns="http://www.w3.org/2000/svg">
@@ -23,11 +19,11 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg">
 def _document(tmp_path):
     path = tmp_path / "graph.svg"
     path.write_text(SVG, encoding="utf-8")
-    return parse_svg(path)
+    return mew_semantic.parse_svg(path)
 
 
 def test_dependency_graph_is_deterministic(tmp_path):
-    graph = build_dependency_graph(_document(tmp_path))
+    graph = mew_semantic.build_dependency_graph(_document(tmp_path))
 
     assert graph.nodes == tuple(sorted(graph.nodes))
     assert graph.edges == tuple(sorted(graph.edges))
@@ -36,7 +32,7 @@ def test_dependency_graph_is_deterministic(tmp_path):
 
 
 def test_query_service_exposes_dependencies_and_dependants(tmp_path):
-    service = SemanticQueryService(_document(tmp_path))
+    service = mew_semantic.SemanticQueryService(_document(tmp_path))
 
     assert service.dependencies_of("task-a") == ("role-1", "task-b")
     assert service.dependencies_of("task-a", transitive=True) == (
@@ -48,7 +44,7 @@ def test_query_service_exposes_dependencies_and_dependants(tmp_path):
 
 
 def test_impact_and_scope_queries(tmp_path):
-    service = SemanticQueryService(_document(tmp_path))
+    service = mew_semantic.SemanticQueryService(_document(tmp_path))
     impact = service.impact_of("task-b")
 
     assert impact.downstream == ("task-c",)
