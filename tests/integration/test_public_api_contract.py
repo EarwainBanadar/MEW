@@ -9,12 +9,18 @@ import pytest
 PUBLIC_EXPORTS = {
     "mew_semantic": {
         "Diagnostic",
+        "GraphEdge",
+        "ImpactResult",
         "SemanticDocument",
         "SemanticElement",
         "SemanticFlow",
+        "SemanticGraph",
+        "SemanticQueryService",
         "SemanticReference",
         "SemanticScope",
         "SemanticSvgParser",
+        "build_dependency_graph",
+        "build_model_graph",
         "parse_svg",
     },
     "mew_bpmn": {"BPMNRepository", "SemanticModelBuilder"},
