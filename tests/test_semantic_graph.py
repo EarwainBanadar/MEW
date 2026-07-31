@@ -1,4 +1,8 @@
-from mew_semantic import SemanticQueryService, build_dependency_graph, parse_svg
+from mew_semantic import (
+    SemanticQueryService,
+    build_dependency_graph,
+    parse_svg,
+)
 
 
 SVG = """<svg xmlns="http://www.w3.org/2000/svg">
