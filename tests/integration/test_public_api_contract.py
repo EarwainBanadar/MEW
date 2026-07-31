@@ -12,6 +12,8 @@ PUBLIC_EXPORTS = {
         "SemanticDocument",
         "SemanticElement",
         "SemanticFlow",
+        "SemanticReference",
+        "SemanticScope",
         "SemanticSvgParser",
         "parse_svg",
     },
