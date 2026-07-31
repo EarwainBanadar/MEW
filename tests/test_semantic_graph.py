@@ -1,7 +1,7 @@
 from mew_semantic import (
-    SemanticQueryService,
     build_dependency_graph,
     parse_svg,
+    SemanticQueryService,
 )
 
 
@@ -55,6 +55,8 @@ def test_impact_and_scope_queries(tmp_path):
     assert impact.upstream == ("task-a",)
     assert service.children_of("process-1") == ("role-1", "task-a", "task-b", "task-c")
     assert service.members_of_scope("process-1") == (
+        "flow-1",
+        "flow-2",
         "process-1",
         "role-1",
         "task-a",
