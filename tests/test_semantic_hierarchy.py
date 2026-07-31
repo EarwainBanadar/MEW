@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from mew_semantic import parse_svg
 
 
@@ -27,13 +25,13 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg">
 """
 
 
-def _write_svg(tmp_path: Path) -> Path:
+def _write_svg(tmp_path):
     path = tmp_path / "hierarchy.svg"
     path.write_text(SVG, encoding="utf-8")
     return path
 
 
-def test_resolves_parent_and_scope_hierarchy(tmp_path: Path) -> None:
+def test_resolves_parent_and_scope_hierarchy(tmp_path):
     document = parse_svg(_write_svg(tmp_path))
 
     assert document.schema_version == "0.2.0"
@@ -49,7 +47,7 @@ def test_resolves_parent_and_scope_hierarchy(tmp_path: Path) -> None:
     ]
 
 
-def test_builds_deterministic_scope_membership(tmp_path: Path) -> None:
+def test_builds_deterministic_scope_membership(tmp_path):
     document = parse_svg(_write_svg(tmp_path))
 
     assert set(document.scopes) == {"process-1", "sub-1"}
@@ -58,7 +56,7 @@ def test_builds_deterministic_scope_membership(tmp_path: Path) -> None:
     assert document.statistics["scopeCount"] == 2
 
 
-def test_resolves_declared_and_flow_references(tmp_path: Path) -> None:
+def test_resolves_declared_and_flow_references(tmp_path):
     document = parse_svg(_write_svg(tmp_path))
 
     references = {
